@@ -3,6 +3,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "EditorConfig.EditorConfig",
-    "vercel.turbo"
+    "vercel.turbo",
+    "dotenv.dotenv-vscode"
   ]
 }
