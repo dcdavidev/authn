@@ -1,20 +1,8 @@
 {
-  "name": "@repo/typescript-config",
+  "name": "@authn/typescript-config",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "files": [
-    "tsconfig.base.json",
-    "tsconfig.node.json",
-    "tsconfig.react.json",
-    "tsconfig.express.json",
-    "tsconfig.nextjs.json",
-    "base.json",
-    "node.json",
-    "react.json",
-    "express.json",
-    "nextjs.json"
-  ],
   "exports": {
     "./tsconfig.base.json": "./tsconfig.base.json",
     "./tsconfig.node.json": "./tsconfig.node.json",
@@ -26,5 +14,17 @@
     "./react.json": "./react.json",
     "./express.json": "./express.json",
     "./nextjs.json": "./nextjs.json"
-  }
+  },
+  "files": [
+    "tsconfig.base.json",
+    "tsconfig.node.json",
+    "tsconfig.react.json",
+    "tsconfig.express.json",
+    "tsconfig.nextjs.json",
+    "base.json",
+    "node.json",
+    "react.json",
+    "express.json",
+    "nextjs.json"
+  ]
 }

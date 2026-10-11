@@ -1,1 +1,1 @@
-export { prisma as default } from 'prettier-config-spellbookx';
+export { default } from 'prettier-config-spellbookx/prisma';

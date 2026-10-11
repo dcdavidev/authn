@@ -6,6 +6,7 @@
     "build": "turbo build",
     "commit": "pnpm exec cz",
     "dev": "turbo dev",
+    "format": "pnpm exec prettier --write .",
     "lint": "pnpm exec eslint .",
     "lint:fix": "pnpm exec eslint --fix ."
   },
