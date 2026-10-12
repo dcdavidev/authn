@@ -5,17 +5,10 @@
 
 import { type Request, type Response, Router } from 'express';
 
-import { healthRouter } from './health.js';
-
 /**
  * Root application router.
  */
 export const rootRouter: Router = Router();
-
-/**
- * Mount health check routes under /health.
- */
-rootRouter.use('/health', healthRouter);
 
 /**
  * GET /

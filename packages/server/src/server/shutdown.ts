@@ -7,8 +7,10 @@
 
 import type { Server } from 'node:http';
 
+import type { Logger } from 'pino';
+
 import { config } from '../config/env.js';
-import { logger } from '../logger/logger.js';
+import { logger as defaultLogger } from '../logger/logger.js';
 
 /**
  * Cleanup function signature for resources that must be released before termination.
@@ -23,12 +25,9 @@ export interface ShutdownOptions {
   timeoutMs?: number;
   /** Optional array of asynchronous cleanup hooks (e.g., database disconnections) */
   cleanupHooks?: CleanupHook[];
+  /** Custom logger instance */
+  logger?: Logger;
 }
-
-/**
- * State variable ensuring the shutdown sequence is executed only once.
- */
-let isShuttingDown = false;
 
 /**
  * Registers signal handlers (SIGTERM, SIGINT) and process error listeners
@@ -42,8 +41,11 @@ export function setupGracefulShutdown(
   server: Server,
   options: ShutdownOptions = {}
 ): void {
+  const activeLogger = options.logger ?? defaultLogger;
   const timeoutMs = options.timeoutMs ?? config.shutdownTimeoutMs;
   const cleanupHooks = options.cleanupHooks ?? [];
+
+  let isShuttingDown = false;
 
   /**
    * Orchestrates the graceful shutdown procedure.
@@ -56,18 +58,18 @@ export function setupGracefulShutdown(
     exitCode: number
   ): Promise<void> {
     if (isShuttingDown) {
-      logger.warn(
+      activeLogger.warn(
         `Shutdown already in progress. Ignoring duplicate trigger: ${trigger}`
       );
       return;
     }
 
     isShuttingDown = true;
-    logger.info(`Received ${trigger}. Starting graceful shutdown...`);
+    activeLogger.info(`Received ${trigger}. Starting graceful shutdown...`);
 
     // Safety timeout: force exit if graceful cleanup exceeds timeoutMs
     const forceExitTimer = setTimeout(() => {
-      logger.error(
+      activeLogger.error(
         `Graceful shutdown timed out after ${timeoutMs}ms. Forcing process exit.`
       );
       process.exit(1);
@@ -93,18 +95,22 @@ export function setupGracefulShutdown(
         server.closeIdleConnections();
       }
 
-      logger.info('HTTP server successfully stopped accepting connections.');
+      activeLogger.info(
+        'HTTP server successfully stopped accepting connections.'
+      );
 
       // Run registered cleanup hooks (e.g., database disconnection)
       for (const hook of cleanupHooks) {
         await hook();
       }
 
-      logger.info('All cleanup tasks completed successfully. Exiting process.');
+      activeLogger.info(
+        'All cleanup tasks completed successfully. Exiting process.'
+      );
       clearTimeout(forceExitTimer);
       process.exit(exitCode);
     } catch (error) {
-      logger.error(
+      activeLogger.error(
         { error },
         'Error occurred during graceful shutdown sequence.'
       );
@@ -124,13 +130,13 @@ export function setupGracefulShutdown(
 
   // Handle uncaught exceptions
   process.on('uncaughtException', (error: Error) => {
-    logger.fatal({ err: error }, `Uncaught exception: ${error.message}`);
+    activeLogger.fatal({ err: error }, `Uncaught exception: ${error.message}`);
     void handleShutdown('uncaughtException', 1);
   });
 
   // Handle unhandled promise rejections
   process.on('unhandledRejection', (reason: unknown) => {
-    logger.fatal({ reason }, 'Unhandled promise rejection detected.');
+    activeLogger.fatal({ reason }, 'Unhandled promise rejection detected.');
     void handleShutdown('unhandledRejection', 1);
   });
 }

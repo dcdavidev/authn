@@ -7,10 +7,9 @@ import type { Server } from 'node:http';
 
 import type { Express } from 'express';
 
+import { startServer as runServer } from '@authn/server';
+
 import { createApp } from './app.js';
-import { config } from './config/env.js';
-import { logger } from './logger/logger.js';
-import { setupGracefulShutdown } from './server/shutdown.js';
 
 /**
  * Express application instance.
@@ -23,21 +22,9 @@ export const app: Express = createApp();
  * @returns The started Node.js HTTP server.
  */
 export function startServer(): Server {
-  const server: Server = app.listen(config.port, config.host, () => {
-    logger.info(
-      {
-        host: config.host,
-        port: config.port,
-        nodeEnv: config.nodeEnv,
-        pid: process.pid,
-      },
-      `🚀 Accounts server started on http://${config.host}:${config.port}`
-    );
+  return runServer(app, {
+    serviceName: 'Accounts server',
   });
-
-  setupGracefulShutdown(server);
-
-  return server;
 }
 
 /**
