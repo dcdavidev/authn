@@ -111,34 +111,34 @@ export function createApp(options?: CreateAppOptions): Express {
     app.disable('x-powered-by');
   }
 
-  // 1. Security headers with Helmet
+  // Security headers with Helmet
   if (options?.enableHelmet !== false) {
     app.use(createHelmetMiddleware(options?.helmetOptions));
   }
 
-  // 2. CORS configuration
+  // CORS configuration
   if (options?.enableCors !== false) {
     app.use(createCorsMiddleware(options?.corsOptions));
   }
 
-  // 3. Request body parsing
+  // Request body parsing
   if (options?.enableBodyParser !== false) {
     for (const middleware of createBodyParserMiddlewares(options?.bodyLimit)) {
       app.use(middleware);
     }
   }
 
-  // 4. HTTP Parameter Pollution protection
+  // HTTP Parameter Pollution protection
   if (options?.enableHpp !== false) {
     app.use(createHppMiddleware(options?.hppOptions));
   }
 
-  // 5. Rate limiting
+  // Rate limiting
   if (options?.enableRateLimit !== false) {
     app.use(createRateLimiter(options?.rateLimitOptions));
   }
 
-  // 6. Health check endpoints
+  // Health check endpoints
   if (options?.enableHealthCheck !== false) {
     const healthPath = options?.healthPath ?? '/health';
     const healthOptions: HealthRouterOptions = {
@@ -148,7 +148,7 @@ export function createApp(options?: CreateAppOptions): Express {
     app.use(healthPath, createHealthRouter(healthOptions));
   }
 
-  // 7. Custom routes mounting
+  // Custom routes mounting
   if (typeof options?.routes === 'function') {
     // If it's a configuration function with (app: Express) => void
     if (options.routes.length === 1) {
@@ -160,19 +160,19 @@ export function createApp(options?: CreateAppOptions): Express {
     app.use(options.routes);
   }
 
-  // 8. Custom setup callback
+  // Custom setup callback
   if (options?.configure) {
     options.configure(app);
   }
 
-  // 9. 404 Not Found fallback handler
+  // 404 Not Found fallback handler
   if (options?.notFoundHandler === undefined) {
     app.use(defaultNotFoundHandler);
   } else {
     app.use(options.notFoundHandler);
   }
 
-  // 10. Centralized error handling
+  // Centralized error handling
   if (options?.errorHandler === undefined) {
     app.use(createErrorHandler({ logger: activeLogger }));
   } else {

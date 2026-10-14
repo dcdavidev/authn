@@ -66,11 +66,11 @@ importers:
         specifier: ^2.0.0
         version: 2.11.7
 
-  apps/accounts-server:
+  apps/accounts-api:
     dependencies:
-      '@authn/server':
+      '@authn/app-core':
         specifier: workspace:*
-        version: link:../../packages/server
+        version: link:../../packages/app-core
       express:
         specifier: ^4.21.0
         version: 4.22.3
@@ -93,7 +93,7 @@ importers:
 
   configs/typescript-config: {}
 
-  packages/server:
+  packages/app-core:
     dependencies:
       cors:
         specifier: ^2.8.6

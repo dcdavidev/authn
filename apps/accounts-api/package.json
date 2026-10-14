@@ -1,5 +1,5 @@
 {
-  "name": "@authn/accounts-server",
+  "name": "@authn/accounts-api",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@authn/server": "workspace:*",
+    "@authn/app-core": "workspace:*",
     "express": "^4.21.0"
   },
   "devDependencies": {

@@ -16,7 +16,7 @@ export const rootRouter: Router = Router();
  */
 rootRouter.get('/', (_req: Request, res: Response) => {
   res.status(200).json({
-    service: '@authn/accounts-server',
+    service: '@authn/accounts-api',
     status: 'online',
     documentation: '/docs',
   });

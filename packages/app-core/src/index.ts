@@ -1,7 +1,7 @@
 /**
  * @file Reusable Express server package providing production-ready configurations,
  * security middlewares, structured Pino logging, and graceful shutdown.
- * @module @authn/server
+ * @module @authn/app-core
  */
 
 export * from './app.js';

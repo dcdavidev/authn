@@ -1,4 +1,4 @@
-# @authn/server
+# @authn/app-core
 
 Reusable, production-ready Express server package with built-in security middlewares, structured Pino logging, health checks, and graceful shutdown.
 
@@ -19,7 +19,7 @@ Reusable, production-ready Express server package with built-in security middlew
 Inside the monorepo workspace:
 
 ```bash
-pnpm --filter @authn/server@workspace:* < your-app > add
+pnpm --filter @authn/app-core@workspace:* < your-app > add
 ```
 
 ---
@@ -29,7 +29,7 @@ pnpm --filter @authn/server@workspace:* < your-app > add
 ### 1. Minimal Server (1 Call)
 
 ```typescript
-import { createServer } from '@authn/server';
+import { createServer } from '@authn/app-core';
 
 const { app, server } = createServer({
   serviceName: 'My Service',
@@ -46,7 +46,7 @@ const { app, server } = createServer({
 ```typescript
 import type { Express } from 'express';
 import type { Server } from 'node:http';
-import { createApp, startServer } from '@authn/server';
+import { createApp, startServer } from '@authn/app-core';
 import { myRouter } from './routes.js';
 
 export const app: Express = createApp({
@@ -85,7 +85,7 @@ The package automatically loads configuration from environment variables or cust
 You can also override any configuration directly in code:
 
 ```typescript
-import { createApp, loadConfig } from '@authn/server';
+import { createApp, loadConfig } from '@authn/app-core';
 
 const customConfig = loadConfig({
   port: 8080,
@@ -103,7 +103,7 @@ const app = createApp({ config: customConfig });
 ### Custom Readiness Check
 
 ```typescript
-import { createApp } from '@authn/server';
+import { createApp } from '@authn/app-core';
 
 const app = createApp({
   healthOptions: {
@@ -123,7 +123,7 @@ const app = createApp({
 Throw `HttpError` anywhere in your routes or middleware:
 
 ```typescript
-import { HttpError } from '@authn/server';
+import { HttpError } from '@authn/app-core';
 
 app.get('/users/:id', (req, res) => {
   const user = findUser(req.params.id);

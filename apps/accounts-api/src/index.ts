@@ -7,7 +7,7 @@ import type { Server } from 'node:http';
 
 import type { Express } from 'express';
 
-import { startServer as runServer } from '@authn/server';
+import { startServer as runServer } from '@authn/app-core';
 
 import { createApp } from './app.js';
 
@@ -23,7 +23,7 @@ export const app: Express = createApp();
  */
 export function startServer(): Server {
   return runServer(app, {
-    serviceName: 'Accounts server',
+    serviceName: 'Accounts API',
   });
 }
 
