@@ -58,7 +58,7 @@ export function loadConfig(overrides?: Partial<ServerConfig>): ServerConfig {
   const port =
     overrides?.port ?? (Number.isNaN(parsedPort) ? 3000 : parsedPort);
 
-  const host = overrides?.host ?? process.env.HOST ?? '0.0.0.0';
+  const host = overrides?.host ?? process.env.HOST ?? 'localhost';
   const logLevel =
     overrides?.logLevel ??
     process.env.LOG_LEVEL ??

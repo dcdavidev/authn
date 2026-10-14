@@ -73,7 +73,7 @@ The package automatically loads configuration from environment variables or cust
 | Variable               | Default                       | Description                                               |
 | ---------------------- | ----------------------------- | --------------------------------------------------------- |
 | `PORT`                 | `3000`                        | Port the server listens on                                |
-| `HOST`                 | `0.0.0.0`                     | Host address                                              |
+| `HOST`                 | `localhost`                   | Host address                                              |
 | `NODE_ENV`             | `development`                 | Runtime environment (`development`, `production`, `test`) |
 | `LOG_LEVEL`            | `debug` (dev) / `info` (prod) | Pino log level                                            |
 | `SHUTDOWN_TIMEOUT_MS`  | `10000`                       | Milliseconds before forcing exit during graceful shutdown |
