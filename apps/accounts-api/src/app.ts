@@ -17,6 +17,7 @@ import { rootRouter } from './routes/index.js';
 export function createApp(): Express {
   return createBaseApp({
     serviceName: '@authn/accounts-api',
+    enableHealthCheck: false,
     routes: rootRouter,
   });
 }
