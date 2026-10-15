@@ -7,27 +7,19 @@ import type { Server } from 'node:http';
 
 import type { Express } from 'express';
 
-import { startServer as runServer } from '@authn/app-core';
+import { createApp, startServer } from '@authn/app-core';
 
-import { createApp } from './app.js';
+import { rootRouter } from './routes/index.js';
 
 /**
  * Express application instance.
  */
-export const app: Express = createApp();
-
-/**
- * Starts the HTTP server and registers graceful termination signal handlers.
- *
- * @returns The started Node.js HTTP server.
- */
-export function startServer(): Server {
-  return runServer(app, {
-    serviceName: 'Accounts API',
-  });
-}
+export const app: Express = createApp({
+  serviceName: '@authn/accounts-api',
+  routes: rootRouter,
+});
 
 /**
  * Server instance running the application.
  */
-export const server: Server = startServer();
+export const server: Server = startServer(app);

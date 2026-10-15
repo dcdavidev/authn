@@ -8,7 +8,7 @@ Reusable, production-ready Express server package with built-in security middlew
 - **DDoS / Brute-force Protection**: Rate limiting with Draft-8 headers.
 - **Request Parsing**: JSON and URL-encoded body parsing with configurable limits.
 - **Structured Logging**: High-performance Pino logger with `pino-pretty` in development and structured JSON in production. Sensitive fields (passwords, tokens, cookies, auth headers) redacted automatically.
-- **Kubernetes / Cloud Ready**: Health check routes (`/health`, `/health/live`, `/health/ready`) with custom readiness probes.
+- **Extensible Health Checks**: Built-in `/health`, `/health/live`, and `/health/ready` endpoints supporting custom service plugins (e.g. database ping) with option to disable or customize.
 - **Graceful Shutdown**: Drains in-flight connections on `SIGTERM` / `SIGINT`, closes idle keep-alive connections, runs custom cleanup hooks (e.g. database disconnects), and enforces a safety timeout.
 - **Centralized Error Handling**: Standardized JSON error responses and `HttpError` helper class.
 
@@ -100,24 +100,6 @@ const app = createApp({ config: customConfig });
 
 ## Customizing Endpoints & Middlewares
 
-### Custom Readiness Check
-
-```typescript
-import { createApp } from '@authn/app-core';
-
-const app = createApp({
-  healthOptions: {
-    isReady: async () => {
-      // Return false (503) if database is not reachable
-      return await db.ping();
-    },
-    extraInfo: () => ({
-      dbStatus: 'connected',
-    }),
-  },
-});
-```
-
 ### Error Handling
 
 Throw `HttpError` anywhere in your routes or middleware:
@@ -131,5 +113,67 @@ app.get('/users/:id', (req, res) => {
     throw new HttpError(404, 'User not found');
   }
   res.json(user);
+});
+```
+
+### Custom Application Settings (`app.set` & `app.get`)
+
+Inject custom application settings via `settings` (or pass `serviceName` directly) and retrieve them with `app.get(name)` or `req.app.get(name)`:
+
+```typescript
+import { createApp } from '@authn/app-core';
+
+const app = createApp({
+  serviceName: '@authn/accounts-api',
+  settings: {
+    apiVersion: 'v1',
+    customFlag: true,
+  },
+  routes: (app) => {
+    app.get('/info', (req, res) => {
+      res.json({
+        service: req.app.get('serviceName'),
+        version: req.app.get('apiVersion'),
+      });
+    });
+  },
+});
+
+console.log(app.get('serviceName')); // '@authn/accounts-api'
+console.log(app.get('apiVersion')); // 'v1'
+```
+
+### Health Checks & Extensible Plugins
+
+Health check endpoints (`/health`, `/health/live`, `/health/ready`) are mounted automatically. You can extend them with custom indicators (such as database ping) or disable them completely:
+
+#### 1. Extending with Custom Plugins (e.g. Database Ping)
+
+```typescript
+import { createApp, createDatabaseHealthPlugin } from '@authn/app-core';
+
+const app = createApp({
+  serviceName: 'Accounts Service',
+  healthOptions: {
+    plugins: [
+      createDatabaseHealthPlugin(
+        async () => {
+          // Run database ping probe
+          return await db.ping();
+        },
+        { critical: true }
+      ),
+    ],
+  },
+});
+```
+
+#### 2. Disabling the Health Check Endpoints
+
+```typescript
+import { createApp } from '@authn/app-core';
+
+const app = createApp({
+  enableHealthCheck: false, // Disables /health, /health/live, /health/ready
 });
 ```

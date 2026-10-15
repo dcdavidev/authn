@@ -85,7 +85,12 @@ export function startServer(
   const activeConfig = options.config ?? defaultConfig;
   const activeLogger = options.logger ?? defaultLogger;
   const serviceName =
-    options.serviceName ?? activeConfig.serviceName ?? 'Express server';
+    options.serviceName ??
+    (typeof app.get('serviceName') === 'string'
+      ? (app.get('serviceName') as string)
+      : undefined) ??
+    activeConfig.serviceName ??
+    'Express server';
 
   const host = activeConfig.host;
   const port = activeConfig.port;

@@ -17,7 +17,8 @@ import type helmet from 'helmet';
 import type hpp from 'hpp';
 import type { Logger } from 'pino';
 
-import { type ServerConfig } from './config/env.js';
+import { config as defaultConfig, type ServerConfig } from './config/env.js';
+import { createHealthRouter, type HealthCheckOptions } from './health/index.js';
 import { logger as defaultLogger } from './logger/logger.js';
 import { createBodyParserMiddlewares } from './middlewares/body-parser.js';
 import {
@@ -33,10 +34,6 @@ import {
   createHelmetMiddleware,
   createHppMiddleware,
 } from './middlewares/security.js';
-import {
-  createHealthRouter,
-  type HealthRouterOptions,
-} from './routes/health.js';
 
 /**
  * Options to customize the Express application creation.
@@ -48,6 +45,11 @@ export interface CreateAppOptions {
   serviceName?: string;
   /** Custom logger instance */
   logger?: Logger;
+  /**
+   * Custom application settings to inject via `app.set(name, value)`.
+   * Settings can be retrieved later using `app.get(name)`.
+   */
+  settings?: Record<string, unknown>;
   /** Trust proxy configuration (e.g. 1 for single proxy, true, or IP list; default: 1) */
   trustProxy?: boolean | number | string;
   /** Whether to disable the 'x-powered-by' header (default: true) */
@@ -72,12 +74,10 @@ export interface CreateAppOptions {
   enableRateLimit?: boolean;
   /** Custom options for rate limiter */
   rateLimitOptions?: Partial<RateLimitOptions>;
-  /** Whether to automatically mount health check endpoints (default: true) */
+  /** Whether to automatically mount health check endpoints (`/health`, `/health/live`, `/health/ready`; default: true) */
   enableHealthCheck?: boolean;
-  /** Mount path for health check endpoints (default: '/health') */
-  healthPath?: string;
-  /** Health check router configuration options */
-  healthOptions?: HealthRouterOptions;
+  /** Configuration options to extend or customize health check endpoints and plugins */
+  healthOptions?: HealthCheckOptions;
   /** Application routes or Router to mount */
   routes?: Router | RequestHandler | ((app: Express) => void);
   /** Callback allowing additional custom middleware or route registration */
@@ -97,11 +97,29 @@ export interface CreateAppOptions {
  */
 export function createApp(options?: CreateAppOptions): Express {
   const app: Express = express();
+  const activeConfig = options?.config ?? defaultConfig;
   const activeLogger = options?.logger ?? defaultLogger;
+
+  // Set nodeEnv setting from resolved environment configuration
+  app.set('nodeEnv', activeConfig.nodeEnv);
+
+  // Set serviceName setting if provided (accessible later via app.get('serviceName'))
+  if (options?.serviceName !== undefined) {
+    app.set('serviceName', options.serviceName);
+  }
+
+  // Custom application settings via app.set(name, value)
+  if (options?.settings) {
+    for (const [key, value] of Object.entries(options.settings)) {
+      app.set(key, value);
+    }
+  }
 
   // Configure reverse proxy trust
   if (options?.trustProxy === undefined) {
-    app.set('trust proxy', 1);
+    if (app.get('trust proxy') === undefined) {
+      app.set('trust proxy', 1);
+    }
   } else {
     app.set('trust proxy', options.trustProxy);
   }
@@ -140,12 +158,9 @@ export function createApp(options?: CreateAppOptions): Express {
 
   // Health check endpoints
   if (options?.enableHealthCheck !== false) {
-    const healthPath = options?.healthPath ?? '/health';
-    const healthOptions: HealthRouterOptions = {
-      serviceName: options?.serviceName,
-      ...options?.healthOptions,
-    };
-    app.use(healthPath, createHealthRouter(healthOptions));
+    const healthPath = options?.healthOptions?.path ?? '/health';
+    const healthRouter = createHealthRouter(options?.healthOptions);
+    app.use(healthPath, healthRouter);
   }
 
   // Custom routes mounting

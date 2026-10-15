@@ -6,8 +6,8 @@
 
 export * from './app.js';
 export * from './config/index.js';
+export * from './health/index.js';
 export * from './logger/index.js';
 export * from './middlewares/index.js';
-export * from './routes/index.js';
 export * from './server.js';
 export * from './server/index.js';
