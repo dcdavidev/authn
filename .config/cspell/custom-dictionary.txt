@@ -1,0 +1,1 @@
+# Project custom words for CSpell (one word per line, case-insensitive)

@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "skills": {
+    "dropdx": {
+      "source": "dcdavidev/dropdx",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/dropdx/SKILL.md",
+      "computedHash": "a012b523b568bf45d795ff0b1df1ba513f64dccf88815834fc61a8f0abad09da"
+    },
+    "spellbookx-commitlint": {
+      "source": "dcdavidev/spellbookx",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/spellbookx-commitlint/SKILL.md",
+      "computedHash": "dc5e3935ab9510974a5f5ea1928b89687442f9dc5380070211c5106766ab1677"
+    },
+    "spellbookx-cspell": {
+      "source": "dcdavidev/spellbookx",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/spellbookx-cspell/SKILL.md",
+      "computedHash": "6d0c5acb2bbf3b08aaa82632ce513c1c1f239a216a8d7786f20978dcd128579b"
+    },
+    "spellbookx-eslint": {
+      "source": "dcdavidev/spellbookx",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/spellbookx-eslint/SKILL.md",
+      "computedHash": "531938f0770e2f82c3085a122d5ea0502038a37bd5700e584bc42ca7e37d20d8"
+    },
+    "spellbookx-prettier": {
+      "source": "dcdavidev/spellbookx",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/spellbookx-prettier/SKILL.md",
+      "computedHash": "faa25f4df09c19fd321695631d6701e03c1e08669b62060395d1bf03b01bb2f9"
+    },
+    "spellbookx-setup": {
+      "source": "dcdavidev/spellbookx",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/spellbookx-setup/SKILL.md",
+      "computedHash": "394c5bd51acc9dcd8530c7e6cb49fddcbaf4722bc5eb7f4f8f2e47b1a33c7e47"
+    },
+    "wnodex": {
+      "source": "dcdavidev/wnodex",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/wnodex/SKILL.md",
+      "computedHash": "966fb7ed2a44657809f52fb1b497ffad65ba2df022c48dbdb3c4af1f86c62923"
+    },
+    "wnodex-development": {
+      "source": "dcdavidev/wnodex",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/wnodex-development/SKILL.md",
+      "computedHash": "92fa1b99664db051c882a66d42ad0794d3fdc541451e9ca3ac79e9866ba8e5c1"
+    },
+    "wnodex-health-checks": {
+      "source": "dcdavidev/wnodex",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/wnodex-health-checks/SKILL.md",
+      "computedHash": "3197dca2a4d46993a3e8cc64d3afc30a9171153192c5d2937be641b212f0c883"
+    },
+    "wnodex-middlewares": {
+      "source": "dcdavidev/wnodex",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/wnodex-middlewares/SKILL.md",
+      "computedHash": "d00518a89febd44f39068b15d28c9ab1008c4823b3873832297839e89a12e3e3"
+    }
+  }
+}

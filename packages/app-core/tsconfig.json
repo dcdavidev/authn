@@ -1,8 +1,0 @@
-{
-  "extends": "@authn/typescript-config/express.json",
-  "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src"
-  },
-  "include": ["src/**/*"]
-}
