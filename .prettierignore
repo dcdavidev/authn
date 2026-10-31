@@ -24,6 +24,7 @@ coverage/
 .nuxt/
 .svelte-kit/
 .astro/
+.react-router/
 .rollup.cache/
 .parcel-cache/
 .vite/

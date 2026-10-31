@@ -4,6 +4,8 @@
     "esbenp.prettier-vscode",
     "EditorConfig.EditorConfig",
     "vercel.turbo",
-    "dotenv.dotenv-vscode"
+    "dotenv.dotenv-vscode",
+    "google.google-antigravity",
+    "ms-azuretools.vscode-containers"
   ]
 }

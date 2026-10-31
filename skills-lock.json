@@ -7,6 +7,12 @@
       "skillPath": ".agents/skills/dropdx/SKILL.md",
       "computedHash": "a012b523b568bf45d795ff0b1df1ba513f64dccf88815834fc61a8f0abad09da"
     },
+    "react-router": {
+      "source": "remix-run/react-router",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/react-router/SKILL.md",
+      "computedHash": "ff4d9bc724f0e56a51c453eef5b93caef1c16d3623ac49345d74fc1a5efbc05a"
+    },
     "spellbookx-commitlint": {
       "source": "dcdavidev/spellbookx",
       "sourceType": "github",
@@ -41,25 +47,49 @@
       "source": "dcdavidev/wnodex",
       "sourceType": "github",
       "skillPath": ".agents/skills/wnodex/SKILL.md",
-      "computedHash": "966fb7ed2a44657809f52fb1b497ffad65ba2df022c48dbdb3c4af1f86c62923"
+      "computedHash": "69adef573ae256a74bec8ba9a770bea200f3e1a7e9ed5ee302ab5039ff7639d9"
+    },
+    "wnodex-config": {
+      "source": "dcdavidev/wnodex",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/wnodex-config/SKILL.md",
+      "computedHash": "d030b6f24e9a6f2662a432bcc95aa9d3583bf561bca998dc04f2086c71f73be8"
     },
     "wnodex-development": {
       "source": "dcdavidev/wnodex",
       "sourceType": "github",
       "skillPath": ".agents/skills/wnodex-development/SKILL.md",
-      "computedHash": "92fa1b99664db051c882a66d42ad0794d3fdc541451e9ca3ac79e9866ba8e5c1"
+      "computedHash": "f7ad9e02d085c01401aa319dcc6664ceb17a51d37bd9a8add67d1278b045eea5"
+    },
+    "wnodex-errors": {
+      "source": "dcdavidev/wnodex",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/wnodex-errors/SKILL.md",
+      "computedHash": "149c53ee53707935d3b8c3e6e957f09e951c75dd48c1964293df3ae55e90f9ae"
     },
     "wnodex-health-checks": {
       "source": "dcdavidev/wnodex",
       "sourceType": "github",
       "skillPath": ".agents/skills/wnodex-health-checks/SKILL.md",
-      "computedHash": "3197dca2a4d46993a3e8cc64d3afc30a9171153192c5d2937be641b212f0c883"
+      "computedHash": "d011f700da56ff29440d9e093b72aa04052da96cca142e8427591ec08b9d19e6"
+    },
+    "wnodex-logger": {
+      "source": "dcdavidev/wnodex",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/wnodex-logger/SKILL.md",
+      "computedHash": "bc0f6d868fae5c68b8a6a51d8b2fa9b753a2a2e876c6ebd2f780e3ec944c92c6"
     },
     "wnodex-middlewares": {
       "source": "dcdavidev/wnodex",
       "sourceType": "github",
       "skillPath": ".agents/skills/wnodex-middlewares/SKILL.md",
-      "computedHash": "d00518a89febd44f39068b15d28c9ab1008c4823b3873832297839e89a12e3e3"
+      "computedHash": "948dbae17b848574bb0f814198eadb989fe62b828eadd276b71115e200c7ea66"
+    },
+    "wnodex-server": {
+      "source": "dcdavidev/wnodex",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/wnodex-server/SKILL.md",
+      "computedHash": "2bcf4506eb634aa09851ac1fa5a93c66c251c4c903227d649456f7876dafd843"
     }
   }
 }
