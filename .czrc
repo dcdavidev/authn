@@ -1,3 +1,4 @@
 {
-  "path": "cz-git"
+  "path": "cz-git",
+  "$schema": "https://raw.githubusercontent.com/Zhengqbbb/cz-git/refs/tags/v1.14.0/docs/public/schema/cz-git.json"
 }
