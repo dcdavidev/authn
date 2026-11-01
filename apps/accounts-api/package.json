@@ -5,19 +5,30 @@
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
+    "db:down": "podman compose down",
+    "db:down:volumes": "podman compose down -v",
+    "db:logs": "podman compose logs -f postgres",
+    "db:ps": "podman compose ps",
+    "db:up": "podman compose up -d",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^2.38.2",
+    "@prisma/adapter-pg": "^7.10.1",
+    "@prisma/client": "7",
+    "dotenv": "^18.0.9",
     "express": "^4.21.0",
+    "pg": "^8.23.1",
     "wnodex": "^0.5.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
-    "@types/node": "^22.0.0",
+    "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
+    "prisma": "^7.10.1",
     "tsx": "^4.19.0",
     "typescript": "^5.9.3"
   }

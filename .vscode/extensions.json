@@ -6,6 +6,7 @@
     "vercel.turbo",
     "dotenv.dotenv-vscode",
     "google.google-antigravity",
-    "ms-azuretools.vscode-containers"
+    "ms-azuretools.vscode-containers",
+    "prisma.prisma"
   ]
 }

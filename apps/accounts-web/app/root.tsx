@@ -1,27 +1,54 @@
+import '@fontsource-variable/inter';
+
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigation,
 } from 'react-router';
+
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  LinearProgress,
+  Paper,
+  Stack,
+  Typography,
+} from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 
 import './app.css';
 
 import type { Route } from './+types/root';
+import { theme } from './lib/theme';
 
 export const links: Route.LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
   {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
-    crossOrigin: 'anonymous',
+    rel: 'apple-touch-icon',
+    sizes: '180x180',
+    href: '/apple-touch-icon.png',
   },
   {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '32x32',
+    href: '/favicon-32x32.png',
   },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '16x16',
+    href: '/favicon-16x16.png',
+  },
+  { rel: 'manifest', href: '/site.webmanifest' },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -34,7 +61,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -43,16 +73,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  const navigation = useNavigation();
+  const isNavigating = Boolean(navigation.location);
+
+  return (
+    <Box>
+      {isNavigating && (
+        <LinearProgress
+          arias-label="Loading..."
+          color="primary"
+          sx={{ display: isNavigating ? 'block' : 'none' }}
+        />
+      )}
+      <Outlet />
+    </Box>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = 'Oops!';
+  let status: number | undefined;
+  let title = 'Something went wrong';
   let details = 'An unexpected error occurred.';
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error';
+    status = error.status;
+    title = error.status === 404 ? 'Page not found' : 'Request error';
     details =
       error.status === 404
         ? 'The requested page could not be found.'
@@ -63,14 +109,106 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <Container
+      component="main"
+      maxWidth="md"
+      sx={{
+        minHeight: '100dvh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        py: 6,
+      }}
+    >
+      <Paper
+        elevation={4}
+        sx={{
+          p: { xs: 3, sm: 5 },
+          width: '100%',
+          borderRadius: 3,
+        }}
+      >
+        <Stack spacing={3}>
+          <Box>
+            <Typography
+              variant="overline"
+              color="primary"
+              sx={{ fontWeight: 700, letterSpacing: 1.5 }}
+            >
+              {status ? `Error ${status}` : 'Application Error'}
+            </Typography>
+            <Typography
+              variant="h3"
+              component="h1"
+              sx={{ fontWeight: 800, mt: 0.5 }}
+            >
+              {title}
+            </Typography>
+          </Box>
+
+          <Alert
+            severity={status === 404 ? 'warning' : 'error'}
+            variant="outlined"
+          >
+            <AlertTitle sx={{ fontWeight: 600 }}>Details</AlertTitle>
+            {details}
+          </Alert>
+
+          {stack && (
+            <Box>
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ display: 'block', mb: 1, fontWeight: 600 }}
+              >
+                Stack Trace (Development Only)
+              </Typography>
+              <Paper
+                variant="outlined"
+                sx={{
+                  p: 2,
+                  bgcolor: 'background.default',
+                  overflowX: 'auto',
+                  maxHeight: 320,
+                  borderRadius: 2,
+                }}
+              >
+                <Box
+                  component="pre"
+                  sx={{
+                    m: 0,
+                    fontFamily: 'monospace',
+                    fontSize: '0.8125rem',
+                    lineHeight: 1.6,
+                    color: 'error.light',
+                  }}
+                >
+                  <code>{stack}</code>
+                </Box>
+              </Paper>
+            </Box>
+          )}
+
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
+            sx={{ pt: 1 }}
+          >
+            <Button component={Link} to="/" variant="contained" size="large">
+              Back to Home
+            </Button>
+            <Button
+              variant="outlined"
+              size="large"
+              onClick={() => {
+                globalThis.location.reload();
+              }}
+            >
+              Reload Page
+            </Button>
+          </Stack>
+        </Stack>
+      </Paper>
+    </Container>
   );
 }

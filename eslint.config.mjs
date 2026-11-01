@@ -2,7 +2,7 @@ import spellbookx from 'eslint-plugin-spellbookx';
 
 export default [
   {
-    ignores: ['**/.react-router/**'],
+    ignores: ['.agents/**', '.openhands/**', '**/.react-router/**'],
   },
   ...spellbookx.configs.recommended,
 ];

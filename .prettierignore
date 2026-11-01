@@ -54,6 +54,7 @@ pnpm-debug.log*
 
 # Agent and changelog files
 .agents/*
+.openhands/*
 AGENT.md
 CHANGELOG.md
 

@@ -7,6 +7,12 @@
       "skillPath": ".agents/skills/dropdx/SKILL.md",
       "computedHash": "a012b523b568bf45d795ff0b1df1ba513f64dccf88815834fc61a8f0abad09da"
     },
+    "prisma-8": {
+      "source": "prisma/prisma",
+      "sourceType": "github",
+      "skillPath": "skills/prisma-8/SKILL.md",
+      "computedHash": "9363d8f6aa99111b81fd1feb5f7f82f7613e66ca936a5d51cb35d909550fdcf1"
+    },
     "react-router": {
       "source": "remix-run/react-router",
       "sourceType": "github",
