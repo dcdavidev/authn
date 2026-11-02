@@ -145,6 +145,13 @@ export default function Home() {
                   }}
                 >
                   <Button
+                    variant="text"
+                    color="secondary"
+                    sx={{ textTransform: 'none', fontWeight: 600 }}
+                  >
+                    Create an account
+                  </Button>
+                  <Button
                     type="submit"
                     variant="contained"
                     size="large"
