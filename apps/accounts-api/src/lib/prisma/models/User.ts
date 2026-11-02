@@ -13,9 +13,7 @@ import type * as Prisma from '../internal/prismaNamespace.js';
 
 /**
  * Model User
- * GDPR-compliant User account model implementing privacy by design & default (Art. 25),
- * granular consent tracking (Art. 7), processing restriction (Art. 18), data portability (Art. 20),
- * and right to erasure / anonymization lifecycle (Art. 17).
+ *
  */
 export type UserModel =
   runtime.Types.Result.DefaultSelection<Prisma.$UserPayload>;
@@ -32,36 +30,8 @@ export type UserMinAggregateOutputType = {
   emailVerifiedAt: Date | null;
   passwordHash: string | null;
   mfaEnabled: boolean | null;
-  givenName: string | null;
-  familyName: string | null;
   displayName: string | null;
-  avatarUrl: string | null;
-  locale: string | null;
-  timezone: string | null;
-  termsAcceptedAt: Date | null;
-  termsVersion: string | null;
-  privacyPolicyAcceptedAt: Date | null;
-  privacyPolicyVersion: string | null;
-  marketingConsent: boolean | null;
-  marketingConsentAt: Date | null;
-  marketingConsentVersion: string | null;
-  analyticsConsent: boolean | null;
-  analyticsConsentAt: Date | null;
-  analyticsConsentVersion: string | null;
-  status: $Enums.UserStatus | null;
-  processingRestricted: boolean | null;
-  processingRestrictedAt: Date | null;
-  restrictionReason: string | null;
-  lastDataExportRequestedAt: Date | null;
-  lastDataExportedAt: Date | null;
-  deletionRequestedAt: Date | null;
-  deletionScheduledAt: Date | null;
-  anonymizedAt: Date | null;
-  lastLoginAt: Date | null;
-  lastActivityAt: Date | null;
   createdAt: Date | null;
-  updatedAt: Date | null;
-  deletedAt: Date | null;
 };
 
 export type UserMaxAggregateOutputType = {
@@ -70,36 +40,8 @@ export type UserMaxAggregateOutputType = {
   emailVerifiedAt: Date | null;
   passwordHash: string | null;
   mfaEnabled: boolean | null;
-  givenName: string | null;
-  familyName: string | null;
   displayName: string | null;
-  avatarUrl: string | null;
-  locale: string | null;
-  timezone: string | null;
-  termsAcceptedAt: Date | null;
-  termsVersion: string | null;
-  privacyPolicyAcceptedAt: Date | null;
-  privacyPolicyVersion: string | null;
-  marketingConsent: boolean | null;
-  marketingConsentAt: Date | null;
-  marketingConsentVersion: string | null;
-  analyticsConsent: boolean | null;
-  analyticsConsentAt: Date | null;
-  analyticsConsentVersion: string | null;
-  status: $Enums.UserStatus | null;
-  processingRestricted: boolean | null;
-  processingRestrictedAt: Date | null;
-  restrictionReason: string | null;
-  lastDataExportRequestedAt: Date | null;
-  lastDataExportedAt: Date | null;
-  deletionRequestedAt: Date | null;
-  deletionScheduledAt: Date | null;
-  anonymizedAt: Date | null;
-  lastLoginAt: Date | null;
-  lastActivityAt: Date | null;
   createdAt: Date | null;
-  updatedAt: Date | null;
-  deletedAt: Date | null;
 };
 
 export type UserCountAggregateOutputType = {
@@ -108,36 +50,8 @@ export type UserCountAggregateOutputType = {
   emailVerifiedAt: number;
   passwordHash: number;
   mfaEnabled: number;
-  givenName: number;
-  familyName: number;
   displayName: number;
-  avatarUrl: number;
-  locale: number;
-  timezone: number;
-  termsAcceptedAt: number;
-  termsVersion: number;
-  privacyPolicyAcceptedAt: number;
-  privacyPolicyVersion: number;
-  marketingConsent: number;
-  marketingConsentAt: number;
-  marketingConsentVersion: number;
-  analyticsConsent: number;
-  analyticsConsentAt: number;
-  analyticsConsentVersion: number;
-  status: number;
-  processingRestricted: number;
-  processingRestrictedAt: number;
-  restrictionReason: number;
-  lastDataExportRequestedAt: number;
-  lastDataExportedAt: number;
-  deletionRequestedAt: number;
-  deletionScheduledAt: number;
-  anonymizedAt: number;
-  lastLoginAt: number;
-  lastActivityAt: number;
   createdAt: number;
-  updatedAt: number;
-  deletedAt: number;
   _all: number;
 };
 
@@ -147,36 +61,8 @@ export type UserMinAggregateInputType = {
   emailVerifiedAt?: true;
   passwordHash?: true;
   mfaEnabled?: true;
-  givenName?: true;
-  familyName?: true;
   displayName?: true;
-  avatarUrl?: true;
-  locale?: true;
-  timezone?: true;
-  termsAcceptedAt?: true;
-  termsVersion?: true;
-  privacyPolicyAcceptedAt?: true;
-  privacyPolicyVersion?: true;
-  marketingConsent?: true;
-  marketingConsentAt?: true;
-  marketingConsentVersion?: true;
-  analyticsConsent?: true;
-  analyticsConsentAt?: true;
-  analyticsConsentVersion?: true;
-  status?: true;
-  processingRestricted?: true;
-  processingRestrictedAt?: true;
-  restrictionReason?: true;
-  lastDataExportRequestedAt?: true;
-  lastDataExportedAt?: true;
-  deletionRequestedAt?: true;
-  deletionScheduledAt?: true;
-  anonymizedAt?: true;
-  lastLoginAt?: true;
-  lastActivityAt?: true;
   createdAt?: true;
-  updatedAt?: true;
-  deletedAt?: true;
 };
 
 export type UserMaxAggregateInputType = {
@@ -185,36 +71,8 @@ export type UserMaxAggregateInputType = {
   emailVerifiedAt?: true;
   passwordHash?: true;
   mfaEnabled?: true;
-  givenName?: true;
-  familyName?: true;
   displayName?: true;
-  avatarUrl?: true;
-  locale?: true;
-  timezone?: true;
-  termsAcceptedAt?: true;
-  termsVersion?: true;
-  privacyPolicyAcceptedAt?: true;
-  privacyPolicyVersion?: true;
-  marketingConsent?: true;
-  marketingConsentAt?: true;
-  marketingConsentVersion?: true;
-  analyticsConsent?: true;
-  analyticsConsentAt?: true;
-  analyticsConsentVersion?: true;
-  status?: true;
-  processingRestricted?: true;
-  processingRestrictedAt?: true;
-  restrictionReason?: true;
-  lastDataExportRequestedAt?: true;
-  lastDataExportedAt?: true;
-  deletionRequestedAt?: true;
-  deletionScheduledAt?: true;
-  anonymizedAt?: true;
-  lastLoginAt?: true;
-  lastActivityAt?: true;
   createdAt?: true;
-  updatedAt?: true;
-  deletedAt?: true;
 };
 
 export type UserCountAggregateInputType = {
@@ -223,36 +81,8 @@ export type UserCountAggregateInputType = {
   emailVerifiedAt?: true;
   passwordHash?: true;
   mfaEnabled?: true;
-  givenName?: true;
-  familyName?: true;
   displayName?: true;
-  avatarUrl?: true;
-  locale?: true;
-  timezone?: true;
-  termsAcceptedAt?: true;
-  termsVersion?: true;
-  privacyPolicyAcceptedAt?: true;
-  privacyPolicyVersion?: true;
-  marketingConsent?: true;
-  marketingConsentAt?: true;
-  marketingConsentVersion?: true;
-  analyticsConsent?: true;
-  analyticsConsentAt?: true;
-  analyticsConsentVersion?: true;
-  status?: true;
-  processingRestricted?: true;
-  processingRestrictedAt?: true;
-  restrictionReason?: true;
-  lastDataExportRequestedAt?: true;
-  lastDataExportedAt?: true;
-  deletionRequestedAt?: true;
-  deletionScheduledAt?: true;
-  anonymizedAt?: true;
-  lastLoginAt?: true;
-  lastActivityAt?: true;
   createdAt?: true;
-  updatedAt?: true;
-  deletedAt?: true;
   _all?: true;
 };
 
@@ -340,36 +170,8 @@ export type UserGroupByOutputType = {
   emailVerifiedAt: Date | null;
   passwordHash: string | null;
   mfaEnabled: boolean;
-  givenName: string | null;
-  familyName: string | null;
   displayName: string | null;
-  avatarUrl: string | null;
-  locale: string | null;
-  timezone: string | null;
-  termsAcceptedAt: Date | null;
-  termsVersion: string | null;
-  privacyPolicyAcceptedAt: Date | null;
-  privacyPolicyVersion: string | null;
-  marketingConsent: boolean;
-  marketingConsentAt: Date | null;
-  marketingConsentVersion: string | null;
-  analyticsConsent: boolean;
-  analyticsConsentAt: Date | null;
-  analyticsConsentVersion: string | null;
-  status: $Enums.UserStatus;
-  processingRestricted: boolean;
-  processingRestrictedAt: Date | null;
-  restrictionReason: string | null;
-  lastDataExportRequestedAt: Date | null;
-  lastDataExportedAt: Date | null;
-  deletionRequestedAt: Date | null;
-  deletionScheduledAt: Date | null;
-  anonymizedAt: Date | null;
-  lastLoginAt: Date | null;
-  lastActivityAt: Date | null;
   createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date | null;
   _count: UserCountAggregateOutputType | null;
   _min: UserMinAggregateOutputType | null;
   _max: UserMaxAggregateOutputType | null;
@@ -398,45 +200,8 @@ export type UserWhereInput = {
     Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
   passwordHash?: Prisma.StringNullableFilter<'User'> | string | null;
   mfaEnabled?: Prisma.BoolFilter<'User'> | boolean;
-  givenName?: Prisma.StringNullableFilter<'User'> | string | null;
-  familyName?: Prisma.StringNullableFilter<'User'> | string | null;
   displayName?: Prisma.StringNullableFilter<'User'> | string | null;
-  avatarUrl?: Prisma.StringNullableFilter<'User'> | string | null;
-  locale?: Prisma.StringNullableFilter<'User'> | string | null;
-  timezone?: Prisma.StringNullableFilter<'User'> | string | null;
-  termsAcceptedAt?:
-    Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  termsVersion?: Prisma.StringNullableFilter<'User'> | string | null;
-  privacyPolicyAcceptedAt?:
-    Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  privacyPolicyVersion?: Prisma.StringNullableFilter<'User'> | string | null;
-  marketingConsent?: Prisma.BoolFilter<'User'> | boolean;
-  marketingConsentAt?:
-    Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  marketingConsentVersion?: Prisma.StringNullableFilter<'User'> | string | null;
-  analyticsConsent?: Prisma.BoolFilter<'User'> | boolean;
-  analyticsConsentAt?:
-    Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  analyticsConsentVersion?: Prisma.StringNullableFilter<'User'> | string | null;
-  status?: Prisma.EnumUserStatusFilter<'User'> | $Enums.UserStatus;
-  processingRestricted?: Prisma.BoolFilter<'User'> | boolean;
-  processingRestrictedAt?:
-    Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  restrictionReason?: Prisma.StringNullableFilter<'User'> | string | null;
-  lastDataExportRequestedAt?:
-    Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  lastDataExportedAt?:
-    Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  deletionRequestedAt?:
-    Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  deletionScheduledAt?:
-    Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  anonymizedAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  lastLoginAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-  lastActivityAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
   createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
-  updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
-  deletedAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
 };
 
 export type UserOrderByWithRelationInput = {
@@ -445,36 +210,8 @@ export type UserOrderByWithRelationInput = {
   emailVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder;
   mfaEnabled?: Prisma.SortOrder;
-  givenName?: Prisma.SortOrderInput | Prisma.SortOrder;
-  familyName?: Prisma.SortOrderInput | Prisma.SortOrder;
   displayName?: Prisma.SortOrderInput | Prisma.SortOrder;
-  avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
-  locale?: Prisma.SortOrderInput | Prisma.SortOrder;
-  timezone?: Prisma.SortOrderInput | Prisma.SortOrder;
-  termsAcceptedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  termsVersion?: Prisma.SortOrderInput | Prisma.SortOrder;
-  privacyPolicyAcceptedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  privacyPolicyVersion?: Prisma.SortOrderInput | Prisma.SortOrder;
-  marketingConsent?: Prisma.SortOrder;
-  marketingConsentAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  marketingConsentVersion?: Prisma.SortOrderInput | Prisma.SortOrder;
-  analyticsConsent?: Prisma.SortOrder;
-  analyticsConsentAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  analyticsConsentVersion?: Prisma.SortOrderInput | Prisma.SortOrder;
-  status?: Prisma.SortOrder;
-  processingRestricted?: Prisma.SortOrder;
-  processingRestrictedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  restrictionReason?: Prisma.SortOrderInput | Prisma.SortOrder;
-  lastDataExportRequestedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  lastDataExportedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  deletionRequestedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  deletionScheduledAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  anonymizedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  lastActivityAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -488,48 +225,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
       Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
     passwordHash?: Prisma.StringNullableFilter<'User'> | string | null;
     mfaEnabled?: Prisma.BoolFilter<'User'> | boolean;
-    givenName?: Prisma.StringNullableFilter<'User'> | string | null;
-    familyName?: Prisma.StringNullableFilter<'User'> | string | null;
     displayName?: Prisma.StringNullableFilter<'User'> | string | null;
-    avatarUrl?: Prisma.StringNullableFilter<'User'> | string | null;
-    locale?: Prisma.StringNullableFilter<'User'> | string | null;
-    timezone?: Prisma.StringNullableFilter<'User'> | string | null;
-    termsAcceptedAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    termsVersion?: Prisma.StringNullableFilter<'User'> | string | null;
-    privacyPolicyAcceptedAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    privacyPolicyVersion?: Prisma.StringNullableFilter<'User'> | string | null;
-    marketingConsent?: Prisma.BoolFilter<'User'> | boolean;
-    marketingConsentAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    marketingConsentVersion?:
-      Prisma.StringNullableFilter<'User'> | string | null;
-    analyticsConsent?: Prisma.BoolFilter<'User'> | boolean;
-    analyticsConsentAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    analyticsConsentVersion?:
-      Prisma.StringNullableFilter<'User'> | string | null;
-    status?: Prisma.EnumUserStatusFilter<'User'> | $Enums.UserStatus;
-    processingRestricted?: Prisma.BoolFilter<'User'> | boolean;
-    processingRestrictedAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    restrictionReason?: Prisma.StringNullableFilter<'User'> | string | null;
-    lastDataExportRequestedAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    lastDataExportedAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    deletionRequestedAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    deletionScheduledAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    anonymizedAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    lastLoginAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
-    lastActivityAt?:
-      Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
     createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
-    deletedAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
   },
   'id' | 'email'
 >;
@@ -540,36 +237,8 @@ export type UserOrderByWithAggregationInput = {
   emailVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder;
   mfaEnabled?: Prisma.SortOrder;
-  givenName?: Prisma.SortOrderInput | Prisma.SortOrder;
-  familyName?: Prisma.SortOrderInput | Prisma.SortOrder;
   displayName?: Prisma.SortOrderInput | Prisma.SortOrder;
-  avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
-  locale?: Prisma.SortOrderInput | Prisma.SortOrder;
-  timezone?: Prisma.SortOrderInput | Prisma.SortOrder;
-  termsAcceptedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  termsVersion?: Prisma.SortOrderInput | Prisma.SortOrder;
-  privacyPolicyAcceptedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  privacyPolicyVersion?: Prisma.SortOrderInput | Prisma.SortOrder;
-  marketingConsent?: Prisma.SortOrder;
-  marketingConsentAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  marketingConsentVersion?: Prisma.SortOrderInput | Prisma.SortOrder;
-  analyticsConsent?: Prisma.SortOrder;
-  analyticsConsentAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  analyticsConsentVersion?: Prisma.SortOrderInput | Prisma.SortOrder;
-  status?: Prisma.SortOrder;
-  processingRestricted?: Prisma.SortOrder;
-  processingRestrictedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  restrictionReason?: Prisma.SortOrderInput | Prisma.SortOrder;
-  lastDataExportRequestedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  lastDataExportedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  deletionRequestedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  deletionScheduledAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  anonymizedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  lastActivityAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   _count?: Prisma.UserCountOrderByAggregateInput;
   _max?: Prisma.UserMaxOrderByAggregateInput;
   _min?: Prisma.UserMinOrderByAggregateInput;
@@ -590,57 +259,9 @@ export type UserScalarWhereWithAggregatesInput = {
   passwordHash?:
     Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
   mfaEnabled?: Prisma.BoolWithAggregatesFilter<'User'> | boolean;
-  givenName?: Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  familyName?:
-    Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
   displayName?:
     Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  avatarUrl?: Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  locale?: Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  timezone?: Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  termsAcceptedAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  termsVersion?:
-    Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  privacyPolicyAcceptedAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  privacyPolicyVersion?:
-    Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  marketingConsent?: Prisma.BoolWithAggregatesFilter<'User'> | boolean;
-  marketingConsentAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  marketingConsentVersion?:
-    Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  analyticsConsent?: Prisma.BoolWithAggregatesFilter<'User'> | boolean;
-  analyticsConsentAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  analyticsConsentVersion?:
-    Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  status?:
-    Prisma.EnumUserStatusWithAggregatesFilter<'User'> | $Enums.UserStatus;
-  processingRestricted?: Prisma.BoolWithAggregatesFilter<'User'> | boolean;
-  processingRestrictedAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  restrictionReason?:
-    Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
-  lastDataExportRequestedAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  lastDataExportedAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  deletionRequestedAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  deletionScheduledAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  anonymizedAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  lastLoginAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
-  lastActivityAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
-  deletedAt?:
-    Prisma.DateTimeNullableWithAggregatesFilter<'User'> | Date | string | null;
 };
 
 export type UserCreateInput = {
@@ -649,36 +270,8 @@ export type UserCreateInput = {
   emailVerifiedAt?: Date | string | null;
   passwordHash?: string | null;
   mfaEnabled?: boolean;
-  givenName?: string | null;
-  familyName?: string | null;
   displayName?: string | null;
-  avatarUrl?: string | null;
-  locale?: string | null;
-  timezone?: string | null;
-  termsAcceptedAt?: Date | string | null;
-  termsVersion?: string | null;
-  privacyPolicyAcceptedAt?: Date | string | null;
-  privacyPolicyVersion?: string | null;
-  marketingConsent?: boolean;
-  marketingConsentAt?: Date | string | null;
-  marketingConsentVersion?: string | null;
-  analyticsConsent?: boolean;
-  analyticsConsentAt?: Date | string | null;
-  analyticsConsentVersion?: string | null;
-  status?: $Enums.UserStatus;
-  processingRestricted?: boolean;
-  processingRestrictedAt?: Date | string | null;
-  restrictionReason?: string | null;
-  lastDataExportRequestedAt?: Date | string | null;
-  lastDataExportedAt?: Date | string | null;
-  deletionRequestedAt?: Date | string | null;
-  deletionScheduledAt?: Date | string | null;
-  anonymizedAt?: Date | string | null;
-  lastLoginAt?: Date | string | null;
-  lastActivityAt?: Date | string | null;
   createdAt?: Date | string;
-  updatedAt?: Date | string;
-  deletedAt?: Date | string | null;
 };
 
 export type UserUncheckedCreateInput = {
@@ -687,36 +280,8 @@ export type UserUncheckedCreateInput = {
   emailVerifiedAt?: Date | string | null;
   passwordHash?: string | null;
   mfaEnabled?: boolean;
-  givenName?: string | null;
-  familyName?: string | null;
   displayName?: string | null;
-  avatarUrl?: string | null;
-  locale?: string | null;
-  timezone?: string | null;
-  termsAcceptedAt?: Date | string | null;
-  termsVersion?: string | null;
-  privacyPolicyAcceptedAt?: Date | string | null;
-  privacyPolicyVersion?: string | null;
-  marketingConsent?: boolean;
-  marketingConsentAt?: Date | string | null;
-  marketingConsentVersion?: string | null;
-  analyticsConsent?: boolean;
-  analyticsConsentAt?: Date | string | null;
-  analyticsConsentVersion?: string | null;
-  status?: $Enums.UserStatus;
-  processingRestricted?: boolean;
-  processingRestrictedAt?: Date | string | null;
-  restrictionReason?: string | null;
-  lastDataExportRequestedAt?: Date | string | null;
-  lastDataExportedAt?: Date | string | null;
-  deletionRequestedAt?: Date | string | null;
-  deletionScheduledAt?: Date | string | null;
-  anonymizedAt?: Date | string | null;
-  lastLoginAt?: Date | string | null;
-  lastActivityAt?: Date | string | null;
   createdAt?: Date | string;
-  updatedAt?: Date | string;
-  deletedAt?: Date | string | null;
 };
 
 export type UserUpdateInput = {
@@ -727,54 +292,8 @@ export type UserUpdateInput = {
   passwordHash?:
     Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   mfaEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  givenName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  familyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  termsAcceptedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  termsVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  privacyPolicyAcceptedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  privacyPolicyVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  marketingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  marketingConsentAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  marketingConsentVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  analyticsConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  analyticsConsentAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  analyticsConsentVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
-  processingRestricted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  processingRestrictedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  restrictionReason?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  lastDataExportRequestedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastDataExportedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  deletionRequestedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  deletionScheduledAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  anonymizedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastLoginAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastActivityAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  deletedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 };
 
 export type UserUncheckedUpdateInput = {
@@ -785,54 +304,8 @@ export type UserUncheckedUpdateInput = {
   passwordHash?:
     Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   mfaEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  givenName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  familyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  termsAcceptedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  termsVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  privacyPolicyAcceptedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  privacyPolicyVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  marketingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  marketingConsentAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  marketingConsentVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  analyticsConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  analyticsConsentAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  analyticsConsentVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
-  processingRestricted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  processingRestrictedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  restrictionReason?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  lastDataExportRequestedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastDataExportedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  deletionRequestedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  deletionScheduledAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  anonymizedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastLoginAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastActivityAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  deletedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 };
 
 export type UserCreateManyInput = {
@@ -841,36 +314,8 @@ export type UserCreateManyInput = {
   emailVerifiedAt?: Date | string | null;
   passwordHash?: string | null;
   mfaEnabled?: boolean;
-  givenName?: string | null;
-  familyName?: string | null;
   displayName?: string | null;
-  avatarUrl?: string | null;
-  locale?: string | null;
-  timezone?: string | null;
-  termsAcceptedAt?: Date | string | null;
-  termsVersion?: string | null;
-  privacyPolicyAcceptedAt?: Date | string | null;
-  privacyPolicyVersion?: string | null;
-  marketingConsent?: boolean;
-  marketingConsentAt?: Date | string | null;
-  marketingConsentVersion?: string | null;
-  analyticsConsent?: boolean;
-  analyticsConsentAt?: Date | string | null;
-  analyticsConsentVersion?: string | null;
-  status?: $Enums.UserStatus;
-  processingRestricted?: boolean;
-  processingRestrictedAt?: Date | string | null;
-  restrictionReason?: string | null;
-  lastDataExportRequestedAt?: Date | string | null;
-  lastDataExportedAt?: Date | string | null;
-  deletionRequestedAt?: Date | string | null;
-  deletionScheduledAt?: Date | string | null;
-  anonymizedAt?: Date | string | null;
-  lastLoginAt?: Date | string | null;
-  lastActivityAt?: Date | string | null;
   createdAt?: Date | string;
-  updatedAt?: Date | string;
-  deletedAt?: Date | string | null;
 };
 
 export type UserUpdateManyMutationInput = {
@@ -881,54 +326,8 @@ export type UserUpdateManyMutationInput = {
   passwordHash?:
     Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   mfaEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  givenName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  familyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  termsAcceptedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  termsVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  privacyPolicyAcceptedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  privacyPolicyVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  marketingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  marketingConsentAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  marketingConsentVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  analyticsConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  analyticsConsentAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  analyticsConsentVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
-  processingRestricted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  processingRestrictedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  restrictionReason?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  lastDataExportRequestedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastDataExportedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  deletionRequestedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  deletionScheduledAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  anonymizedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastLoginAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastActivityAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  deletedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 };
 
 export type UserUncheckedUpdateManyInput = {
@@ -939,54 +338,8 @@ export type UserUncheckedUpdateManyInput = {
   passwordHash?:
     Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   mfaEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  givenName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  familyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  termsAcceptedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  termsVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  privacyPolicyAcceptedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  privacyPolicyVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  marketingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  marketingConsentAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  marketingConsentVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  analyticsConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  analyticsConsentAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  analyticsConsentVersion?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
-  processingRestricted?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  processingRestrictedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  restrictionReason?:
-    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  lastDataExportRequestedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastDataExportedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  deletionRequestedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  deletionScheduledAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  anonymizedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastLoginAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-  lastActivityAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  deletedAt?:
-    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 };
 
 export type UserCountOrderByAggregateInput = {
@@ -995,36 +348,8 @@ export type UserCountOrderByAggregateInput = {
   emailVerifiedAt?: Prisma.SortOrder;
   passwordHash?: Prisma.SortOrder;
   mfaEnabled?: Prisma.SortOrder;
-  givenName?: Prisma.SortOrder;
-  familyName?: Prisma.SortOrder;
   displayName?: Prisma.SortOrder;
-  avatarUrl?: Prisma.SortOrder;
-  locale?: Prisma.SortOrder;
-  timezone?: Prisma.SortOrder;
-  termsAcceptedAt?: Prisma.SortOrder;
-  termsVersion?: Prisma.SortOrder;
-  privacyPolicyAcceptedAt?: Prisma.SortOrder;
-  privacyPolicyVersion?: Prisma.SortOrder;
-  marketingConsent?: Prisma.SortOrder;
-  marketingConsentAt?: Prisma.SortOrder;
-  marketingConsentVersion?: Prisma.SortOrder;
-  analyticsConsent?: Prisma.SortOrder;
-  analyticsConsentAt?: Prisma.SortOrder;
-  analyticsConsentVersion?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
-  processingRestricted?: Prisma.SortOrder;
-  processingRestrictedAt?: Prisma.SortOrder;
-  restrictionReason?: Prisma.SortOrder;
-  lastDataExportRequestedAt?: Prisma.SortOrder;
-  lastDataExportedAt?: Prisma.SortOrder;
-  deletionRequestedAt?: Prisma.SortOrder;
-  deletionScheduledAt?: Prisma.SortOrder;
-  anonymizedAt?: Prisma.SortOrder;
-  lastLoginAt?: Prisma.SortOrder;
-  lastActivityAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  deletedAt?: Prisma.SortOrder;
 };
 
 export type UserMaxOrderByAggregateInput = {
@@ -1033,36 +358,8 @@ export type UserMaxOrderByAggregateInput = {
   emailVerifiedAt?: Prisma.SortOrder;
   passwordHash?: Prisma.SortOrder;
   mfaEnabled?: Prisma.SortOrder;
-  givenName?: Prisma.SortOrder;
-  familyName?: Prisma.SortOrder;
   displayName?: Prisma.SortOrder;
-  avatarUrl?: Prisma.SortOrder;
-  locale?: Prisma.SortOrder;
-  timezone?: Prisma.SortOrder;
-  termsAcceptedAt?: Prisma.SortOrder;
-  termsVersion?: Prisma.SortOrder;
-  privacyPolicyAcceptedAt?: Prisma.SortOrder;
-  privacyPolicyVersion?: Prisma.SortOrder;
-  marketingConsent?: Prisma.SortOrder;
-  marketingConsentAt?: Prisma.SortOrder;
-  marketingConsentVersion?: Prisma.SortOrder;
-  analyticsConsent?: Prisma.SortOrder;
-  analyticsConsentAt?: Prisma.SortOrder;
-  analyticsConsentVersion?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
-  processingRestricted?: Prisma.SortOrder;
-  processingRestrictedAt?: Prisma.SortOrder;
-  restrictionReason?: Prisma.SortOrder;
-  lastDataExportRequestedAt?: Prisma.SortOrder;
-  lastDataExportedAt?: Prisma.SortOrder;
-  deletionRequestedAt?: Prisma.SortOrder;
-  deletionScheduledAt?: Prisma.SortOrder;
-  anonymizedAt?: Prisma.SortOrder;
-  lastLoginAt?: Prisma.SortOrder;
-  lastActivityAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  deletedAt?: Prisma.SortOrder;
 };
 
 export type UserMinOrderByAggregateInput = {
@@ -1071,36 +368,8 @@ export type UserMinOrderByAggregateInput = {
   emailVerifiedAt?: Prisma.SortOrder;
   passwordHash?: Prisma.SortOrder;
   mfaEnabled?: Prisma.SortOrder;
-  givenName?: Prisma.SortOrder;
-  familyName?: Prisma.SortOrder;
   displayName?: Prisma.SortOrder;
-  avatarUrl?: Prisma.SortOrder;
-  locale?: Prisma.SortOrder;
-  timezone?: Prisma.SortOrder;
-  termsAcceptedAt?: Prisma.SortOrder;
-  termsVersion?: Prisma.SortOrder;
-  privacyPolicyAcceptedAt?: Prisma.SortOrder;
-  privacyPolicyVersion?: Prisma.SortOrder;
-  marketingConsent?: Prisma.SortOrder;
-  marketingConsentAt?: Prisma.SortOrder;
-  marketingConsentVersion?: Prisma.SortOrder;
-  analyticsConsent?: Prisma.SortOrder;
-  analyticsConsentAt?: Prisma.SortOrder;
-  analyticsConsentVersion?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
-  processingRestricted?: Prisma.SortOrder;
-  processingRestrictedAt?: Prisma.SortOrder;
-  restrictionReason?: Prisma.SortOrder;
-  lastDataExportRequestedAt?: Prisma.SortOrder;
-  lastDataExportedAt?: Prisma.SortOrder;
-  deletionRequestedAt?: Prisma.SortOrder;
-  deletionScheduledAt?: Prisma.SortOrder;
-  anonymizedAt?: Prisma.SortOrder;
-  lastLoginAt?: Prisma.SortOrder;
-  lastActivityAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  deletedAt?: Prisma.SortOrder;
 };
 
 export type StringFieldUpdateOperationsInput = {
@@ -1119,10 +388,6 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean;
 };
 
-export type EnumUserStatusFieldUpdateOperationsInput = {
-  set?: $Enums.UserStatus;
-};
-
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string;
 };
@@ -1137,36 +402,8 @@ export type UserSelect<
     emailVerifiedAt?: boolean;
     passwordHash?: boolean;
     mfaEnabled?: boolean;
-    givenName?: boolean;
-    familyName?: boolean;
     displayName?: boolean;
-    avatarUrl?: boolean;
-    locale?: boolean;
-    timezone?: boolean;
-    termsAcceptedAt?: boolean;
-    termsVersion?: boolean;
-    privacyPolicyAcceptedAt?: boolean;
-    privacyPolicyVersion?: boolean;
-    marketingConsent?: boolean;
-    marketingConsentAt?: boolean;
-    marketingConsentVersion?: boolean;
-    analyticsConsent?: boolean;
-    analyticsConsentAt?: boolean;
-    analyticsConsentVersion?: boolean;
-    status?: boolean;
-    processingRestricted?: boolean;
-    processingRestrictedAt?: boolean;
-    restrictionReason?: boolean;
-    lastDataExportRequestedAt?: boolean;
-    lastDataExportedAt?: boolean;
-    deletionRequestedAt?: boolean;
-    deletionScheduledAt?: boolean;
-    anonymizedAt?: boolean;
-    lastLoginAt?: boolean;
-    lastActivityAt?: boolean;
     createdAt?: boolean;
-    updatedAt?: boolean;
-    deletedAt?: boolean;
   },
   ExtArgs['result']['user']
 >;
@@ -1181,36 +418,8 @@ export type UserSelectCreateManyAndReturn<
     emailVerifiedAt?: boolean;
     passwordHash?: boolean;
     mfaEnabled?: boolean;
-    givenName?: boolean;
-    familyName?: boolean;
     displayName?: boolean;
-    avatarUrl?: boolean;
-    locale?: boolean;
-    timezone?: boolean;
-    termsAcceptedAt?: boolean;
-    termsVersion?: boolean;
-    privacyPolicyAcceptedAt?: boolean;
-    privacyPolicyVersion?: boolean;
-    marketingConsent?: boolean;
-    marketingConsentAt?: boolean;
-    marketingConsentVersion?: boolean;
-    analyticsConsent?: boolean;
-    analyticsConsentAt?: boolean;
-    analyticsConsentVersion?: boolean;
-    status?: boolean;
-    processingRestricted?: boolean;
-    processingRestrictedAt?: boolean;
-    restrictionReason?: boolean;
-    lastDataExportRequestedAt?: boolean;
-    lastDataExportedAt?: boolean;
-    deletionRequestedAt?: boolean;
-    deletionScheduledAt?: boolean;
-    anonymizedAt?: boolean;
-    lastLoginAt?: boolean;
-    lastActivityAt?: boolean;
     createdAt?: boolean;
-    updatedAt?: boolean;
-    deletedAt?: boolean;
   },
   ExtArgs['result']['user']
 >;
@@ -1225,36 +434,8 @@ export type UserSelectUpdateManyAndReturn<
     emailVerifiedAt?: boolean;
     passwordHash?: boolean;
     mfaEnabled?: boolean;
-    givenName?: boolean;
-    familyName?: boolean;
     displayName?: boolean;
-    avatarUrl?: boolean;
-    locale?: boolean;
-    timezone?: boolean;
-    termsAcceptedAt?: boolean;
-    termsVersion?: boolean;
-    privacyPolicyAcceptedAt?: boolean;
-    privacyPolicyVersion?: boolean;
-    marketingConsent?: boolean;
-    marketingConsentAt?: boolean;
-    marketingConsentVersion?: boolean;
-    analyticsConsent?: boolean;
-    analyticsConsentAt?: boolean;
-    analyticsConsentVersion?: boolean;
-    status?: boolean;
-    processingRestricted?: boolean;
-    processingRestrictedAt?: boolean;
-    restrictionReason?: boolean;
-    lastDataExportRequestedAt?: boolean;
-    lastDataExportedAt?: boolean;
-    deletionRequestedAt?: boolean;
-    deletionScheduledAt?: boolean;
-    anonymizedAt?: boolean;
-    lastLoginAt?: boolean;
-    lastActivityAt?: boolean;
     createdAt?: boolean;
-    updatedAt?: boolean;
-    deletedAt?: boolean;
   },
   ExtArgs['result']['user']
 >;
@@ -1265,36 +446,8 @@ export type UserSelectScalar = {
   emailVerifiedAt?: boolean;
   passwordHash?: boolean;
   mfaEnabled?: boolean;
-  givenName?: boolean;
-  familyName?: boolean;
   displayName?: boolean;
-  avatarUrl?: boolean;
-  locale?: boolean;
-  timezone?: boolean;
-  termsAcceptedAt?: boolean;
-  termsVersion?: boolean;
-  privacyPolicyAcceptedAt?: boolean;
-  privacyPolicyVersion?: boolean;
-  marketingConsent?: boolean;
-  marketingConsentAt?: boolean;
-  marketingConsentVersion?: boolean;
-  analyticsConsent?: boolean;
-  analyticsConsentAt?: boolean;
-  analyticsConsentVersion?: boolean;
-  status?: boolean;
-  processingRestricted?: boolean;
-  processingRestrictedAt?: boolean;
-  restrictionReason?: boolean;
-  lastDataExportRequestedAt?: boolean;
-  lastDataExportedAt?: boolean;
-  deletionRequestedAt?: boolean;
-  deletionScheduledAt?: boolean;
-  anonymizedAt?: boolean;
-  lastLoginAt?: boolean;
-  lastActivityAt?: boolean;
   createdAt?: boolean;
-  updatedAt?: boolean;
-  deletedAt?: boolean;
 };
 
 export type UserOmit<
@@ -1306,36 +459,8 @@ export type UserOmit<
   | 'emailVerifiedAt'
   | 'passwordHash'
   | 'mfaEnabled'
-  | 'givenName'
-  | 'familyName'
   | 'displayName'
-  | 'avatarUrl'
-  | 'locale'
-  | 'timezone'
-  | 'termsAcceptedAt'
-  | 'termsVersion'
-  | 'privacyPolicyAcceptedAt'
-  | 'privacyPolicyVersion'
-  | 'marketingConsent'
-  | 'marketingConsentAt'
-  | 'marketingConsentVersion'
-  | 'analyticsConsent'
-  | 'analyticsConsentAt'
-  | 'analyticsConsentVersion'
-  | 'status'
-  | 'processingRestricted'
-  | 'processingRestrictedAt'
-  | 'restrictionReason'
-  | 'lastDataExportRequestedAt'
-  | 'lastDataExportedAt'
-  | 'deletionRequestedAt'
-  | 'deletionScheduledAt'
-  | 'anonymizedAt'
-  | 'lastLoginAt'
-  | 'lastActivityAt'
-  | 'createdAt'
-  | 'updatedAt'
-  | 'deletedAt',
+  | 'createdAt',
   ExtArgs['result']['user']
 >;
 
@@ -1348,55 +473,15 @@ export type $UserPayload<
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       /**
-       * Pseudonymous identifier (UUIDv7) to prevent enumeration and avoid exposing PII in URLs/logs (Art. 25, Art. 32).
+       * Pseudonymous identifier (UUIDv7) to prevent enumeration and avoid exposing PII in URLs/logs.
        */
       id: string;
       email: string;
       emailVerifiedAt: Date | null;
       passwordHash: string | null;
       mfaEnabled: boolean;
-      givenName: string | null;
-      familyName: string | null;
       displayName: string | null;
-      avatarUrl: string | null;
-      locale: string | null;
-      timezone: string | null;
-      termsAcceptedAt: Date | null;
-      termsVersion: string | null;
-      privacyPolicyAcceptedAt: Date | null;
-      privacyPolicyVersion: string | null;
-      /**
-       * Explicit opt-in only (Privacy by Default - Art. 25(2)).
-       */
-      marketingConsent: boolean;
-      marketingConsentAt: Date | null;
-      marketingConsentVersion: string | null;
-      analyticsConsent: boolean;
-      analyticsConsentAt: Date | null;
-      analyticsConsentVersion: string | null;
-      status: $Enums.UserStatus;
-      /**
-       * Right to restriction of processing (Art. 18): halts non-essential processing while retaining data.
-       */
-      processingRestricted: boolean;
-      processingRestrictedAt: Date | null;
-      restrictionReason: string | null;
-      /**
-       * Right to access & data portability tracking (Art. 15 & Art. 20).
-       */
-      lastDataExportRequestedAt: Date | null;
-      lastDataExportedAt: Date | null;
-      /**
-       * Right to erasure ("Right to be forgotten" - Art. 17) & anonymization lifecycle.
-       */
-      deletionRequestedAt: Date | null;
-      deletionScheduledAt: Date | null;
-      anonymizedAt: Date | null;
-      lastLoginAt: Date | null;
-      lastActivityAt: Date | null;
       createdAt: Date;
-      updatedAt: Date;
-      deletedAt: Date | null;
     },
     ExtArgs['result']['user']
   >;
@@ -1988,36 +1073,8 @@ export interface UserFieldRefs {
   readonly emailVerifiedAt: Prisma.FieldRef<'User', 'DateTime'>;
   readonly passwordHash: Prisma.FieldRef<'User', 'String'>;
   readonly mfaEnabled: Prisma.FieldRef<'User', 'Boolean'>;
-  readonly givenName: Prisma.FieldRef<'User', 'String'>;
-  readonly familyName: Prisma.FieldRef<'User', 'String'>;
   readonly displayName: Prisma.FieldRef<'User', 'String'>;
-  readonly avatarUrl: Prisma.FieldRef<'User', 'String'>;
-  readonly locale: Prisma.FieldRef<'User', 'String'>;
-  readonly timezone: Prisma.FieldRef<'User', 'String'>;
-  readonly termsAcceptedAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly termsVersion: Prisma.FieldRef<'User', 'String'>;
-  readonly privacyPolicyAcceptedAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly privacyPolicyVersion: Prisma.FieldRef<'User', 'String'>;
-  readonly marketingConsent: Prisma.FieldRef<'User', 'Boolean'>;
-  readonly marketingConsentAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly marketingConsentVersion: Prisma.FieldRef<'User', 'String'>;
-  readonly analyticsConsent: Prisma.FieldRef<'User', 'Boolean'>;
-  readonly analyticsConsentAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly analyticsConsentVersion: Prisma.FieldRef<'User', 'String'>;
-  readonly status: Prisma.FieldRef<'User', 'UserStatus'>;
-  readonly processingRestricted: Prisma.FieldRef<'User', 'Boolean'>;
-  readonly processingRestrictedAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly restrictionReason: Prisma.FieldRef<'User', 'String'>;
-  readonly lastDataExportRequestedAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly lastDataExportedAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly deletionRequestedAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly deletionScheduledAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly anonymizedAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly lastLoginAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly lastActivityAt: Prisma.FieldRef<'User', 'DateTime'>;
   readonly createdAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly updatedAt: Prisma.FieldRef<'User', 'DateTime'>;
-  readonly deletedAt: Prisma.FieldRef<'User', 'DateTime'>;
 }
 
 // Custom InputTypes

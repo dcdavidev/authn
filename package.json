@@ -15,7 +15,7 @@
     "db:logs": "pnpm --filter @authn/accounts-api run db:logs",
     "db:ps": "pnpm --filter @authn/accounts-api run db:ps",
     "db:up": "pnpm --filter @authn/accounts-api run db:up",
-    "dev": "turbo dev",
+    "dev": "turbo run dev",
     "fmt": "pnpm exec prettier --ignore-unknown --write .",
     "fmt:check": "pnpm exec prettier --ignore-unknown --check .",
     "format": "pnpm exec prettier --write .",

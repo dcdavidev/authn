@@ -574,36 +574,8 @@ export const UserScalarFieldEnum = {
   emailVerifiedAt: 'emailVerifiedAt',
   passwordHash: 'passwordHash',
   mfaEnabled: 'mfaEnabled',
-  givenName: 'givenName',
-  familyName: 'familyName',
   displayName: 'displayName',
-  avatarUrl: 'avatarUrl',
-  locale: 'locale',
-  timezone: 'timezone',
-  termsAcceptedAt: 'termsAcceptedAt',
-  termsVersion: 'termsVersion',
-  privacyPolicyAcceptedAt: 'privacyPolicyAcceptedAt',
-  privacyPolicyVersion: 'privacyPolicyVersion',
-  marketingConsent: 'marketingConsent',
-  marketingConsentAt: 'marketingConsentAt',
-  marketingConsentVersion: 'marketingConsentVersion',
-  analyticsConsent: 'analyticsConsent',
-  analyticsConsentAt: 'analyticsConsentAt',
-  analyticsConsentVersion: 'analyticsConsentVersion',
-  status: 'status',
-  processingRestricted: 'processingRestricted',
-  processingRestrictedAt: 'processingRestrictedAt',
-  restrictionReason: 'restrictionReason',
-  lastDataExportRequestedAt: 'lastDataExportRequestedAt',
-  lastDataExportedAt: 'lastDataExportedAt',
-  deletionRequestedAt: 'deletionRequestedAt',
-  deletionScheduledAt: 'deletionScheduledAt',
-  anonymizedAt: 'anonymizedAt',
-  lastLoginAt: 'lastLoginAt',
-  lastActivityAt: 'lastActivityAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
 } as const;
 
 export type UserScalarFieldEnum =
@@ -672,22 +644,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   'Boolean'
->;
-
-/**
- * Reference to a field of type 'UserStatus'
- */
-export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'UserStatus'
->;
-
-/**
- * Reference to a field of type 'UserStatus[]'
- */
-export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'UserStatus[]'
 >;
 
 /**

@@ -2,31 +2,49 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "dependsOn": ["^build"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "start": {
-      "cache": false,
-      "persistent": true,
-      "dependsOn": ["^build", "^start"],
+      "dependsOn": ["^build", "prisma:generate"],
       "outputs": ["dist/**"]
     },
-    "typecheck": {
-      "dependsOn": ["^typecheck"],
-      "outputs": [".react-router/**"]
+    "db:down": {
+      "cache": false,
+      "persistent": false,
+      "dependsOn": ["^db:down"]
+    },
+    "db:down:volumes": {
+      "cache": false,
+      "persistent": false,
+      "dependsOn": ["^db:down:volumes"]
+    },
+    "db:logs": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^db:logs"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "persistent": false,
+      "dependsOn": ["db:up", "db:wait", "^db:migrate"],
+      "outputs": ["prisma/migrations/**"]
+    },
+    "db:ps": {
+      "cache": false,
+      "persistent": false,
+      "dependsOn": ["^db:ps"]
     },
     "db:up": {
       "cache": false,
       "persistent": false,
       "dependsOn": ["^db:up"]
     },
-    "db:down": {
+    "db:wait": {
       "cache": false,
       "persistent": false,
-      "dependsOn": ["^db:down"]
+      "dependsOn": ["db:up", "^db:wait"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["db:up", "db:wait", "prisma:generate", "^dev"]
     },
     "prisma:generate": {
       "cache": false,
@@ -37,13 +55,16 @@
     "prisma:studio": {
       "cache": false,
       "persistent": true,
-      "dependsOn": ["^prisma:studio"]
+      "dependsOn": ["db:up", "db:wait", "^prisma:studio"]
     },
-    "db:migrate": {
+    "start": {
       "cache": false,
-      "persistent": false,
-      "dependsOn": ["db:up", "^db:wait", "^db:migrate"],
-      "outputs": ["prisma/migrations/**"]
+      "persistent": true,
+      "dependsOn": ["build", "db:up", "db:wait", "^start"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck", "prisma:generate"],
+      "outputs": []
     }
   }
 }

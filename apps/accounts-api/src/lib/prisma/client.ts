@@ -48,8 +48,6 @@ export { Prisma };
 
 /**
  * Model User
- * GDPR-compliant User account model implementing privacy by design & default (Art. 25),
- * granular consent tracking (Art. 7), processing restriction (Art. 18), data portability (Art. 20),
- * and right to erasure / anonymization lifecycle (Art. 17).
+ *
  */
 export type User = Prisma.UserModel;

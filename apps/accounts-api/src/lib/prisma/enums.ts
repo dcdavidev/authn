@@ -8,13 +8,5 @@
  * 🟢 You can import this file directly.
  */
 
-export const UserStatus = {
-  PENDING_VERIFICATION: 'PENDING_VERIFICATION',
-  ACTIVE: 'ACTIVE',
-  RESTRICTED: 'RESTRICTED',
-  SUSPENDED: 'SUSPENDED',
-  PENDING_DELETION: 'PENDING_DELETION',
-  ANONYMIZED: 'ANONYMIZED',
-} as const;
-
-export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus];
+// This file is empty because there are no enums in the schema.
+export {};
