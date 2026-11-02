@@ -3,12 +3,15 @@
  * @module index
  */
 
+import '@dotenvx/dotenvx/config';
+
 import type { Server } from 'node:http';
 
 import type { Express } from 'express';
 
-import { createApp, startServer } from 'wnodex';
+import { createApp, createDatabaseHealthPlugin, startServer } from 'wnodex';
 
+import { prisma } from './lib/prisma-client.js';
 import { rootRouter } from './routes/index.js';
 
 /**
@@ -17,6 +20,20 @@ import { rootRouter } from './routes/index.js';
 export const app: Express = createApp({
   serviceName: '@authn/accounts-api',
   routes: rootRouter,
+  healthOptions: {
+    plugins: [
+      createDatabaseHealthPlugin(
+        async () => {
+          const [result] = await prisma.$queryRaw<[{ exists: boolean }]>`
+            SELECT to_regclass('public.users') IS NOT NULL AS "exists"
+          `;
+
+          return Boolean(result?.exists);
+        },
+        { critical: true }
+      ),
+    ],
+  },
 });
 
 /**

@@ -1,0 +1,49 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build", "^start"],
+      "outputs": ["dist/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": [".react-router/**"]
+    },
+    "db:up": {
+      "cache": false,
+      "persistent": false,
+      "dependsOn": ["^db:up"]
+    },
+    "db:down": {
+      "cache": false,
+      "persistent": false,
+      "dependsOn": ["^db:down"]
+    },
+    "prisma:generate": {
+      "cache": false,
+      "persistent": false,
+      "dependsOn": ["^prisma:generate"],
+      "outputs": ["src/lib/prisma/**"]
+    },
+    "prisma:studio": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^prisma:studio"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "persistent": false,
+      "dependsOn": ["db:up", "^db:wait", "^db:migrate"],
+      "outputs": ["prisma/migrations/**"]
+    }
+  }
+}

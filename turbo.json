@@ -1,5 +1,6 @@
 {
   "$schema": "https://v2-11-10.turborepo.dev/schema.json",
+  "ui": "tui",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -8,6 +9,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": [".react-router/**"]
     }
   }
 }

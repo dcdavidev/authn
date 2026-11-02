@@ -1,1 +1,3 @@
-export { default } from 'commitlint-config-spellbookx';
+export default {
+  extends: ['spellbookx'],
+};
