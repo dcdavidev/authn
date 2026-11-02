@@ -1,5 +1,5 @@
 {
-  "name": "accounts-web",
+  "name": "@authn/accounts-web",
   "private": true,
   "type": "module",
   "scripts": {
