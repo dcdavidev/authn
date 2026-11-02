@@ -7,89 +7,19 @@ datasource db {
   provider = "postgresql"
 }
 
-enum UserStatus {
-  PENDING_VERIFICATION
-  ACTIVE
-  RESTRICTED
-  SUSPENDED
-  PENDING_DELETION
-  ANONYMIZED
-
-  @@map("user_status")
-}
-
-/// GDPR-compliant User account model implementing privacy by design & default (Art. 25),
-/// granular consent tracking (Art. 7), processing restriction (Art. 18), data portability (Art. 20),
-/// and right to erasure / anonymization lifecycle (Art. 17).
 model User {
-  /// Pseudonymous identifier (UUIDv7) to prevent enumeration and avoid exposing PII in URLs/logs (Art. 25, Art. 32).
+  /// Pseudonymous identifier (UUIDv7) to prevent enumeration and avoid exposing PII in URLs/logs.
   id String @id @default(uuid(7)) @db.Uuid
 
-  // ---------------------------------------------------------------------------
-  // Core Identity & Authentication (Data Minimization - Art. 5(1)(c))
-  // ---------------------------------------------------------------------------
+  // Core Identity & Authentication
   email           String    @unique @db.VarChar(320)
   emailVerifiedAt DateTime? @map("email_verified_at") @db.Timestamptz(6)
   passwordHash    String?   @map("password_hash") @db.Text
   mfaEnabled      Boolean   @default(false) @map("mfa_enabled")
 
-  // ---------------------------------------------------------------------------
   // Optional Profile PII (Minimized & Erasable on Anonymization)
-  // ---------------------------------------------------------------------------
-  givenName   String? @map("given_name") @db.VarChar(100)
-  familyName  String? @map("family_name") @db.VarChar(100)
-  displayName String? @map("display_name") @db.VarChar(150)
-  avatarUrl   String? @map("avatar_url") @db.Text
-  locale      String? @db.VarChar(35)
-  timezone    String? @db.VarChar(64)
+  displayName String?  @map("display_name") @db.VarChar(150)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
 
-  // ---------------------------------------------------------------------------
-  // Lawfulness, Transparency & Granular Consent (Art. 6, Art. 7, Art. 13, Art. 25(2))
-  // ---------------------------------------------------------------------------
-  termsAcceptedAt         DateTime? @map("terms_accepted_at") @db.Timestamptz(6)
-  termsVersion            String?   @map("terms_version") @db.VarChar(32)
-  privacyPolicyAcceptedAt DateTime? @map("privacy_policy_accepted_at") @db.Timestamptz(6)
-  privacyPolicyVersion    String?   @map("privacy_policy_version") @db.VarChar(32)
-
-  /// Explicit opt-in only (Privacy by Default - Art. 25(2)).
-  marketingConsent        Boolean   @default(false) @map("marketing_consent")
-  marketingConsentAt      DateTime? @map("marketing_consent_at") @db.Timestamptz(6)
-  marketingConsentVersion String?   @map("marketing_consent_version") @db.VarChar(32)
-
-  analyticsConsent        Boolean   @default(false) @map("analytics_consent")
-  analyticsConsentAt      DateTime? @map("analytics_consent_at") @db.Timestamptz(6)
-  analyticsConsentVersion String?   @map("analytics_consent_version") @db.VarChar(32)
-
-  // ---------------------------------------------------------------------------
-  // Data Subject Rights: Restriction, Portability & Erasure (Art. 15, 17, 18, 20)
-  // ---------------------------------------------------------------------------
-  status UserStatus @default(PENDING_VERIFICATION)
-
-  /// Right to restriction of processing (Art. 18): halts non-essential processing while retaining data.
-  processingRestricted   Boolean   @default(false) @map("processing_restricted")
-  processingRestrictedAt DateTime? @map("processing_restricted_at") @db.Timestamptz(6)
-  restrictionReason      String?   @map("restriction_reason") @db.VarChar(255)
-
-  /// Right to access & data portability tracking (Art. 15 & Art. 20).
-  lastDataExportRequestedAt DateTime? @map("last_data_export_requested_at") @db.Timestamptz(6)
-  lastDataExportedAt        DateTime? @map("last_data_exported_at") @db.Timestamptz(6)
-
-  /// Right to erasure ("Right to be forgotten" - Art. 17) & anonymization lifecycle.
-  deletionRequestedAt DateTime? @map("deletion_requested_at") @db.Timestamptz(6)
-  deletionScheduledAt DateTime? @map("deletion_scheduled_at") @db.Timestamptz(6)
-  anonymizedAt        DateTime? @map("anonymized_at") @db.Timestamptz(6)
-
-  // ---------------------------------------------------------------------------
-  // Storage Limitation & Retention Lifecycle (Art. 5(1)(e))
-  // ---------------------------------------------------------------------------
-  lastLoginAt    DateTime? @map("last_login_at") @db.Timestamptz(6)
-  lastActivityAt DateTime? @map("last_activity_at") @db.Timestamptz(6)
-  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt      DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
-  deletedAt      DateTime? @map("deleted_at") @db.Timestamptz(6)
-
-  @@index([status])
-  @@index([deletionScheduledAt])
-  @@index([lastActivityAt])
   @@map("users")
 }
