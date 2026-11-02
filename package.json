@@ -1,5 +1,5 @@
 {
-  "name": "authn",
+  "name": "@authn/workspace",
   "private": true,
   "type": "module",
   "scripts": {
