@@ -28,7 +28,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import './app.css';
 
 import type { Route } from './+types/root';
-import { MagicIsland } from './components/magic-island';
+import { CookieConsent } from './components/cookie-consent';
 import { theme } from './lib/theme';
 
 export const links: Route.LinksFunction = () => [
@@ -64,7 +64,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <MagicIsland />
+          <CookieConsent />
           {children}
         </ThemeProvider>
         <ScrollRestoration />
