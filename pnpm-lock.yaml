@@ -77,6 +77,9 @@ importers:
       dotenv:
         specifier: ^18.0.9
         version: 18.0.9
+      email-regex:
+        specifier: ^6.1.0
+        version: 6.1.0
       express:
         specifier: ^4.21.0
         version: 4.22.3
@@ -2757,6 +2760,10 @@ packages:
 
   elkjs@0.11.1:
     resolution: {integrity: sha512-zxxR9k+rx5ktMwT/FwyLdPCrq7xN6e4VGGHH8hA01vVYKjTFik7nHOxBnAYtrgYUB1RpAiLvA1/U2YraWxyKKg==}
+
+  email-regex@6.1.0:
+    resolution: {integrity: sha512-z8CjalGIdeho0mUe5rYJ2sjO3zV1Tt1Xi6T62koznflrzFfIiaPbqJDZ70Fy59ABQznrtcn7WCXS3RdaDsvE1w==}
+    engines: {node: '>=20'}
 
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
@@ -8337,6 +8344,8 @@ snapshots:
   electron-to-chromium@1.5.452: {}
 
   elkjs@0.11.1: {}
+
+  email-regex@6.1.0: {}
 
   emoji-regex@10.6.0: {}
 

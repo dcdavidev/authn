@@ -3,4 +3,5 @@
  * @module controllers
  */
 
+export * from './auth.controller.js';
 export * from './root.controller.js';

@@ -6,6 +6,7 @@
 import { Router } from 'express';
 
 import { rootController } from '../controllers/index.js';
+import { authRouter } from './auth.js';
 
 /**
  * Root application router.
@@ -17,3 +18,9 @@ export const rootRouter: Router = Router();
  * Root service metadata endpoint.
  */
 rootRouter.get('/', rootController.getRoot);
+
+/**
+ * /auth
+ * Authentication endpoints.
+ */
+rootRouter.use('/auth', authRouter);

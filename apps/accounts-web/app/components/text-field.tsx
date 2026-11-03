@@ -14,7 +14,7 @@ export function TextField({
 }: TextFieldProps) {
   const hasLabel = Boolean(label);
 
-  const baseTextFieldSx: SxProps<Theme> = {
+  const baseTextFieldSx: SxProps<Theme> = (theme) => ({
     '& .MuiInputLabel-root': {
       fontSize: '1.125rem',
       transform: 'translate(20px, 16px) scale(1)',
@@ -26,9 +26,16 @@ export function TextField({
       bgcolor: 'rgba(255, 255, 255, 0.08)',
       borderRadius: 2,
       fontSize: '1.125rem',
-      transition: 'background-color 0.2s ease',
+      transition: 'background-color 0.2s ease, box-shadow 0.2s ease',
       '&:hover, &.Mui-focused': {
         bgcolor: 'rgba(255, 255, 255, 0.12)',
+      },
+      '&.Mui-error': {
+        bgcolor: 'rgba(211, 47, 47, 0.12)',
+        boxShadow: `inset 0 0 0 1.5px ${theme.palette.error.main}`,
+        '&:hover, &.Mui-focused': {
+          bgcolor: 'rgba(211, 47, 47, 0.16)',
+        },
       },
     },
     '& .MuiOutlinedInput-input': {
@@ -39,7 +46,7 @@ export function TextField({
     '& .MuiOutlinedInput-notchedOutline': {
       border: 'none',
     },
-  };
+  });
 
   return (
     <MuiTextField
