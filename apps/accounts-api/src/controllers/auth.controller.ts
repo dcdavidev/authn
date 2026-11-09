@@ -3,7 +3,11 @@
  * @module controllers/auth.controller
  */
 
-import { randomBytes, scrypt as scryptCallback } from 'node:crypto';
+import {
+  randomBytes,
+  scrypt as scryptCallback,
+  timingSafeEqual,
+} from 'node:crypto';
 import { promisify } from 'node:util';
 
 import type { NextFunction, Request, Response } from 'express';
@@ -40,6 +44,14 @@ export interface RegisterRequestBody {
 }
 
 /**
+ * Request body payload sent by the login form.
+ */
+export interface LoginRequestBody {
+  email?: unknown;
+  password?: unknown;
+}
+
+/**
  * Hashes a plain-text password using Node's built-in scrypt KDF.
  *
  * @param password - Plain-text password to hash.
@@ -53,6 +65,36 @@ async function hashPassword(password: string): Promise<string> {
     SCRYPT_KEY_LENGTH
   )) as Buffer;
   return `scrypt$${salt}$${derivedKey.toString('hex')}`;
+}
+
+/**
+ * Verifies a plain-text password against an encoded scrypt password hash.
+ *
+ * @param password - Plain-text password to verify.
+ * @param storedHash - Encoded `scrypt$&lt;salt>$&lt;derivedKey>` password hash string.
+ * @returns `true` when the password matches the stored hash, otherwise `false`.
+ */
+async function verifyPassword(
+  password: string,
+  storedHash: string
+): Promise<boolean> {
+  const [algorithm, salt, keyHex] = storedHash.split('$');
+  if (algorithm !== 'scrypt' || !salt || !keyHex) {
+    return false;
+  }
+
+  const storedKey = Buffer.from(keyHex, 'hex');
+  if (storedKey.length !== SCRYPT_KEY_LENGTH) {
+    return false;
+  }
+
+  const derivedKey = (await scrypt(
+    password,
+    salt,
+    SCRYPT_KEY_LENGTH
+  )) as Buffer;
+
+  return timingSafeEqual(storedKey, derivedKey);
 }
 
 /**
@@ -298,9 +340,68 @@ export class AuthController {
     }
   };
 
-  loginUser = (_req: Request, res: Response): void => {
-    // Placeholder for user login logic
-    res.status(200).json({ message: 'User logged in successfully.' });
+  /**
+   * POST /auth/login
+   * Authenticates an existing user account using email and password credentials.
+   *
+   * @param req - Express request object containing `{ email, password }`.
+   * @param res - Express response object.
+   * @param next - Express next middleware function.
+   */
+  loginUser = async (
+    req: Request<Record<string, never>, unknown, LoginRequestBody>,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const { email, password } = req.body ?? ({} as LoginRequestBody);
+
+      const emailResult = validateEmail(email);
+      if (!emailResult.valid || !emailResult.normalizedEmail) {
+        throw HttpError.badRequest(
+          emailResult.message ?? 'Please provide a valid email address.'
+        );
+      }
+
+      if (typeof password !== 'string' || password.length === 0) {
+        throw HttpError.badRequest('Password is required.');
+      }
+
+      const existingUser = await prisma.user.findUnique({
+        where: { email: emailResult.normalizedEmail },
+        select: {
+          id: true,
+          email: true,
+          passwordHash: true,
+          displayName: true,
+          emailVerifiedAt: true,
+          mfaEnabled: true,
+          createdAt: true,
+        },
+      });
+
+      if (!existingUser?.passwordHash) {
+        throw HttpError.unauthorized('Invalid email or password.');
+      }
+
+      const isPasswordValid = await verifyPassword(
+        password,
+        existingUser.passwordHash
+      );
+
+      if (!isPasswordValid) {
+        throw HttpError.unauthorized('Invalid email or password.');
+      }
+
+      const { passwordHash: _passwordHash, ...user } = existingUser;
+
+      res.status(200).json({
+        message: 'User logged in successfully.',
+        user,
+      });
+    } catch (error) {
+      next(error);
+    }
   };
 
   logoutUser = (_req: Request, res: Response): void => {
