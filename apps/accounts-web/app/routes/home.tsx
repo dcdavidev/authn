@@ -23,6 +23,13 @@ import { ShimmerButton } from '../components/shimmer-button';
 import { TextButton } from '../components/text-button';
 import { TextField } from '../components/text-field';
 import { api } from '../lib/api';
+import {
+  createAuthCookieHeader,
+  type CurrentUserApiResponse,
+  encodeBasicCredentials,
+  getAccessToken,
+  type LoginApiResponse,
+} from '../lib/auth.server';
 import type { Route } from './+types/home';
 
 interface EmailValidationResponse {
@@ -51,6 +58,26 @@ export function meta(_args: Route.MetaArgs) {
         'A playground for modern authentication methods and centralized SSO.',
     },
   ];
+}
+
+export async function loader({ request }: Route.LoaderArgs) {
+  const accessToken = await getAccessToken(request);
+
+  if (!accessToken) {
+    return null;
+  }
+
+  try {
+    await api.get<CurrentUserApiResponse>('/auth/me', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return redirect('/dashboard');
+  } catch {
+    return null;
+  }
 }
 
 export async function action({ request }: Route.ActionArgs) {
@@ -156,12 +183,30 @@ export async function action({ request }: Route.ActionArgs) {
   }
 
   try {
-    await api.post('/auth/login', {
-      email,
-      password,
-    });
+    const basicToken = encodeBasicCredentials(email, password);
+    const loginResponse = await api.post<LoginApiResponse>(
+      '/auth/login',
+      {
+        email,
+        password,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${basicToken}`,
+        },
+      }
+    );
 
-    return redirect('/dashboard');
+    const setCookieHeader = await createAuthCookieHeader(
+      loginResponse.data.accessToken,
+      loginResponse.data.expiresIn
+    );
+
+    return redirect('/dashboard', {
+      headers: {
+        'Set-Cookie': setCookieHeader,
+      },
+    });
   } catch (error) {
     let message = 'Unable to sign in. Please try again.';
     let status = 400;

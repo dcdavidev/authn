@@ -6,6 +6,7 @@
 import { Router } from 'express';
 
 import { authController } from '../controllers/index.js';
+import { authenticate } from '../middlewares/index.js';
 
 /**
  * Authentication router mounted under /auth.
@@ -38,9 +39,15 @@ authRouter.post('/register', authController.registerUser);
 
 /**
  * POST /auth/login
- * User login endpoint.
+ * User login endpoint (accepts HTTP Basic credentials or JSON body and returns a Bearer JWT).
  */
 authRouter.post('/login', authController.loginUser);
+
+/**
+ * GET /auth/me
+ * Authenticated user profile endpoint (protected via Bearer JWT or HTTP Basic authentication).
+ */
+authRouter.get('/me', authenticate, authController.getCurrentUser);
 
 /**
  * POST /auth/logout

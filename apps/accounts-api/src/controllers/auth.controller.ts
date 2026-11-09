@@ -3,35 +3,22 @@
  * @module controllers/auth.controller
  */
 
-import {
-  randomBytes,
-  scrypt as scryptCallback,
-  timingSafeEqual,
-} from 'node:crypto';
-import { promisify } from 'node:util';
-
 import type { NextFunction, Request, Response } from 'express';
 
 import { HttpError } from 'wnodex/errors';
 
+import { signAccessToken } from '../lib/jwt.js';
+import { hashPassword } from '../lib/password.js';
 import { prisma } from '../lib/prisma-client.js';
 import {
   validateDisplayName,
   validateEmail,
   validatePassword,
 } from '../lib/validation.js';
-
-/**
- * Promise-based wrapper around Node's built-in `crypto.scrypt` key derivation function (KDF).
- *
- * `scrypt` is a CPU- and memory-hard password hashing algorithm designed to make
- * brute-force and specialized hardware (GPU) attacks computationally expensive.
- * Wrapping `scryptCallback` with `promisify` converts its callback-style API into
- * an `async/await`-compatible function without blocking the Node.js event loop.
- */
-const scrypt = promisify(scryptCallback);
-
-const SCRYPT_KEY_LENGTH = 64;
+import {
+  extractBasicCredentials,
+  verifyUserCredentials,
+} from '../middlewares/auth.middleware.js';
 
 /**
  * Request body payload sent by the registration form.
@@ -49,52 +36,6 @@ export interface RegisterRequestBody {
 export interface LoginRequestBody {
   email?: unknown;
   password?: unknown;
-}
-
-/**
- * Hashes a plain-text password using Node's built-in scrypt KDF.
- *
- * @param password - Plain-text password to hash.
- * @returns Encoded password hash string.
- */
-async function hashPassword(password: string): Promise<string> {
-  const salt = randomBytes(16).toString('hex');
-  const derivedKey = (await scrypt(
-    password,
-    salt,
-    SCRYPT_KEY_LENGTH
-  )) as Buffer;
-  return `scrypt$${salt}$${derivedKey.toString('hex')}`;
-}
-
-/**
- * Verifies a plain-text password against an encoded scrypt password hash.
- *
- * @param password - Plain-text password to verify.
- * @param storedHash - Encoded `scrypt$&lt;salt>$&lt;derivedKey>` password hash string.
- * @returns `true` when the password matches the stored hash, otherwise `false`.
- */
-async function verifyPassword(
-  password: string,
-  storedHash: string
-): Promise<boolean> {
-  const [algorithm, salt, keyHex] = storedHash.split('$');
-  if (algorithm !== 'scrypt' || !salt || !keyHex) {
-    return false;
-  }
-
-  const storedKey = Buffer.from(keyHex, 'hex');
-  if (storedKey.length !== SCRYPT_KEY_LENGTH) {
-    return false;
-  }
-
-  const derivedKey = (await scrypt(
-    password,
-    salt,
-    SCRYPT_KEY_LENGTH
-  )) as Buffer;
-
-  return timingSafeEqual(storedKey, derivedKey);
 }
 
 /**
@@ -342,9 +283,10 @@ export class AuthController {
 
   /**
    * POST /auth/login
-   * Authenticates an existing user account using email and password credentials.
+   * Authenticates an existing user account via HTTP Basic header or `{ email, password }` JSON body
+   * and issues a signed Bearer JWT access token.
    *
-   * @param req - Express request object containing `{ email, password }`.
+   * @param req - Express request object containing Basic auth header or `{ email, password }` body.
    * @param res - Express response object.
    * @param next - Express next middleware function.
    */
@@ -354,49 +296,25 @@ export class AuthController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const { email, password } = req.body ?? ({} as LoginRequestBody);
-
-      const emailResult = validateEmail(email);
-      if (!emailResult.valid || !emailResult.normalizedEmail) {
-        throw HttpError.badRequest(
-          emailResult.message ?? 'Please provide a valid email address.'
-        );
-      }
-
-      if (typeof password !== 'string' || password.length === 0) {
-        throw HttpError.badRequest('Password is required.');
-      }
-
-      const existingUser = await prisma.user.findUnique({
-        where: { email: emailResult.normalizedEmail },
-        select: {
-          id: true,
-          email: true,
-          passwordHash: true,
-          displayName: true,
-          emailVerifiedAt: true,
-          mfaEnabled: true,
-          createdAt: true,
-        },
-      });
-
-      if (!existingUser?.passwordHash) {
-        throw HttpError.unauthorized('Invalid email or password.');
-      }
-
-      const isPasswordValid = await verifyPassword(
-        password,
-        existingUser.passwordHash
+      const basicCredentials = extractBasicCredentials(
+        req.headers.authorization
       );
+      const email = basicCredentials?.email ?? req.body?.email;
+      const password = basicCredentials?.password ?? req.body?.password;
 
-      if (!isPasswordValid) {
-        throw HttpError.unauthorized('Invalid email or password.');
-      }
+      const user = await verifyUserCredentials(email, password);
 
-      const { passwordHash: _passwordHash, ...user } = existingUser;
+      const { accessToken, tokenType, expiresIn } = signAccessToken({
+        sub: user.id,
+        email: user.email,
+        displayName: user.displayName,
+      });
 
       res.status(200).json({
         message: 'User logged in successfully.',
+        accessToken,
+        tokenType,
+        expiresIn,
         user,
       });
     } catch (error) {
@@ -404,8 +322,37 @@ export class AuthController {
     }
   };
 
+  /**
+   * GET /auth/me
+   * Returns the currently authenticated user profile resolved via Bearer JWT or HTTP Basic authentication.
+   *
+   * @param req - Express request object populated by `authenticate` middleware.
+   * @param res - Express response object.
+   * @param next - Express next middleware function.
+   */
+  getCurrentUser = (req: Request, res: Response, next: NextFunction): void => {
+    try {
+      if (!req.auth) {
+        throw HttpError.unauthorized('Authentication required.');
+      }
+
+      res.status(200).json({
+        user: req.auth.user,
+        scheme: req.auth.scheme,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  /**
+   * POST /auth/logout
+   * Logs out the current user session.
+   *
+   * @param _req - Express request object.
+   * @param res - Express response object.
+   */
   logoutUser = (_req: Request, res: Response): void => {
-    // Placeholder for user logout logic
     res.status(200).json({ message: 'User logged out successfully.' });
   };
 }

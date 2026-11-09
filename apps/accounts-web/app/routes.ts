@@ -9,6 +9,7 @@ export default [
   layout('layouts/auth-layout.tsx', [
     index('routes/home.tsx'),
     route('register', 'routes/register.tsx'),
+    route('dashboard', 'routes/dashboard.tsx'),
     route('help', 'routes/help.tsx'),
     route('privacy', 'routes/privacy.tsx'),
     route('terms', 'routes/terms.tsx'),
